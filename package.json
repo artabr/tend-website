@@ -10,6 +10,9 @@
     "check": "biome check --write src"
   },
   "dependencies": {
+    "@builder.io/dev-tools": "^1.6.53",
+    "@builder.io/react": "^8.2.0",
+    "@builder.io/sdk": "^6.0.9",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
