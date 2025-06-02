@@ -1,9 +1,9 @@
-"use client";
-import { ComponentProps } from "react";
-import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
-import { BuilderContent, builder } from "@builder.io/sdk";
-import DefaultErrorPage from "next/error";
-import "../builder-registry";
+'use client';
+import { BuilderComponent, useIsPreviewing } from '@builder.io/react';
+import { builder } from '@builder.io/sdk';
+import DefaultErrorPage from 'next/error';
+import type { ComponentProps } from 'react';
+import '../builder-registry';
 
 type BuilderPageProps = ComponentProps<typeof BuilderComponent>;
 
@@ -17,7 +17,31 @@ export function RenderBuilderContent({ content, model }: BuilderPageProps) {
   // If "content" has a value or the page is being previewed in Builder,
   // render the BuilderComponent with the specified content and model props.
   if (content || isPreviewing) {
-    return <BuilderComponent content={content} model={model} />;
+    return (
+      <BuilderComponent
+        content={content}
+        model={model}
+        data={{
+          testimonials: [
+            {
+              review: 'This is a great product!',
+              name: 'John Doe',
+              position: 'CEO, Company',
+            },
+            {
+              review: 'I love using this product!',
+              name: 'Jane Smith',
+              position: 'CTO, Company',
+            },
+            {
+              review: 'Highly recommend this product!',
+              name: 'Alice Johnson',
+              position: 'CMO, Company',
+            },
+          ],
+        }}
+      />
+    );
   }
   // If the "content" is falsy and the page is
   // not being previewed in Builder, render the
