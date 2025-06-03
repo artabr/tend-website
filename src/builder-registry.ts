@@ -18,6 +18,8 @@ Builder.registerComponent(Counter, {
   ],
 });
 
+// sample changes to make an MR
+
 // Register all MUI components individually
 // ---
 // I put it here only as an example for now, unfortunately, although it works in development mode,
