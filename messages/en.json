@@ -3,7 +3,7 @@
     "title": "About",
     "lastUpdated": "This example was updated {lastUpdatedRelative} ({lastUpdated, date, short})."
   },
-  "Index": {
+  "Pages": {
     "title": "Home",
     "description": "<p>Only the minimum of <code>{locale}</code> messages are loaded to render this page.</p><p>These namespaces are available:</p>"
   },

@@ -3,7 +3,7 @@
     "title": "About",
     "lastUpdated": "Dieses Beispiel wurde {lastUpdatedRelative} aktualisiert ({lastUpdated, date, short})."
   },
-  "Index": {
+  "Pages": {
     "title": "Start",
     "description": "<p>Nur das Minimum an <code>{locale}</code> Übersetzungen sind geladen um diese Seite darzustellen.</p><p>Diese Namespaces sind verfügbar:</p>"
   },

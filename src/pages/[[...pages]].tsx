@@ -17,7 +17,7 @@ export default function Pages({
   page,
   attributes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const t = useTranslations('Index');
+  const t = useTranslations('Pages');
   const { locale } = useRouter();
 
   const builderModelName = 'page';
