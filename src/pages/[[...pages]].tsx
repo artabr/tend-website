@@ -1,11 +1,9 @@
-import Code from '@/components/Code';
 import PageLayout from '@/components/PageLayout';
 import { RenderBuilderContent } from '@/components/builder';
 import { builder } from '@builder.io/react';
 import pick from 'lodash/pick';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 // TODO: Check if it's safe to use the Builder API key here
@@ -18,7 +16,6 @@ export default function Pages({
   attributes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const t = useTranslations('Pages');
-  const { locale } = useRouter();
 
   const builderModelName = 'page';
 
@@ -26,23 +23,8 @@ export default function Pages({
     builder.setUserAttributes(attributes!);
   }, []);
 
-  const { title, description } = page?.data || {};
   return (
     <PageLayout title={t('title')}>
-      <div>
-        {t.rich('description', {
-          locale: locale!,
-          p: (children) => <p>{children}</p>,
-          code: (children) => <Code>{children}</Code>,
-        })}
-      </div>
-      <ul>
-        {Pages.messages.map((componentName) => (
-          <li key={componentName} style={{ marginBottom: 5 }}>
-            <Code>{componentName}</Code>
-          </li>
-        ))}
-      </ul>
       {/* Render the Builder page */}
       <RenderBuilderContent content={page} model={builderModelName} />
     </PageLayout>

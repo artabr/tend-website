@@ -1,16 +1,16 @@
 {
   "PageLayout": {
-    "pageTitle": "Website name"
+    "pageTitle": "Название сайта"
   },
   "Pages": {
-    "title": "Home"
+    "title": "Главная"
   },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, en {English} ru {Русский} other {Unknown}}"
   },
   "Navigation": {
-    "home": "Home",
-    "test-page": "Test page"
+    "home": "Главная",
+    "test-page": "Тестовая страница"
   }
 }

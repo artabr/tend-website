@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = BuilderDevTools()({
   i18n: {
-    locales: ['en', 'de'],
+    locales: ['en', 'ru'],
     defaultLocale: 'en',
   },
 } satisfies NextConfig);

@@ -1,4 +1,4 @@
-import Navigation from '@/components/Navigation';
+import Navigation from '@/components/ui/Navigation';
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
@@ -16,20 +16,9 @@ export default function PageLayout({ children, title }: Props) {
       <Head>
         <title>{[title, t('pageTitle')].join(' - ')}</title>
       </Head>
-      <div
-        style={{
-          padding: 24,
-          fontFamily: 'system-ui, sans-serif',
-          lineHeight: 1.5,
-          maxWidth: 800,
-          margin: 'auto',
-        }}
-      >
+      <div>
         <Navigation />
-        <div>
-          <h1>{title}</h1>
-          {children}
-        </div>
+        <div>{children}</div>
       </div>
     </>
   );
