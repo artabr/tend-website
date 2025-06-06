@@ -3,7 +3,7 @@ name: 'Netlify Previews'
 on:
   push:
     branches-ignore:
-      - master
+      - main
 
 jobs:
   deploy:
