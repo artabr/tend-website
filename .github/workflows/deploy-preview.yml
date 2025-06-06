@@ -19,12 +19,18 @@ jobs:
 
       # Sets the branch name as environment variable
       - uses: nelonoel/branch-name@v1.0.1
-      - uses: jsmrcaga/action-netlify-deploy@master
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
         with:
+          publish-dir: './.next'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          netlify-config-path: './netlify.toml'
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          deploy_alias: ${{ env.BRANCH_NAME }}
-          build_directory: '.next'
+        timeout-minutes: 1
 
       # Creates a status check with link to preview
       - name: Status check
