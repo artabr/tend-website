@@ -17,6 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Use Node.jsc
+        uses: actions/setup-node@4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+
       # Sets the branch name as environment variable
       - uses: nelonoel/branch-name@v1.0.1
 
