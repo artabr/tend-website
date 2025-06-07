@@ -9,7 +9,11 @@ type BuilderPageProps = ComponentProps<typeof BuilderComponent>;
 // Builder Public API Key set in .env file
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
-export function RenderBuilderContent({ content, model }: BuilderPageProps) {
+export function RenderBuilderContent({
+  content,
+  model,
+  data,
+}: BuilderPageProps) {
   // Call the useIsPreviewing hook to determine if
   // the page is being previewed in Builder
   const isPreviewing = useIsPreviewing();
@@ -21,6 +25,8 @@ export function RenderBuilderContent({ content, model }: BuilderPageProps) {
         content={content}
         model={model}
         data={{
+          ...data,
+          // Remove the hardcoded data below
           testimonials: [
             {
               review: 'This is a great product!',

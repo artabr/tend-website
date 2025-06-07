@@ -1,6 +1,8 @@
 import PageLayout from '@/components/PageLayout';
 import { RenderBuilderContent } from '@/components/builder';
+import { directus } from '@/core/api/directus';
 import { builder } from '@builder.io/react';
+import { readItems } from '@directus/sdk';
 import pick from 'lodash/pick';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useTranslations } from 'next-intl';
@@ -12,7 +14,8 @@ import { useEffect } from 'react';
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 export default function Pages({
-  page,
+  viewData,
+  contentData,
   attributes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const t = useTranslations('Pages');
@@ -26,7 +29,11 @@ export default function Pages({
   return (
     <PageLayout title={t('title')}>
       {/* Render the Builder page */}
-      <RenderBuilderContent content={page} model={builderModelName} />
+      <RenderBuilderContent
+        content={viewData}
+        model={builderModelName}
+        data={contentData}
+      />
     </PageLayout>
   );
 }
@@ -44,32 +51,64 @@ export async function getStaticProps({
   locales,
   preview,
 }: GetStaticPropsContext<{ pages: string[] }>) {
-  const config = { locale, locales };
   console.log('params', params);
-  // const { attributes } = parsePersonalizedURL(params!.pages || []);
-  const attributes = {
-    // Use the page path specified in the URL to fetch the content
-    urlPath: '/' + (params?.pages?.join('/') || ''),
+  const slug = `/${params?.pages?.join('/') || 'home'}`;
+  console.log('slug', slug);
+  console.log('locale', locale);
+
+  const pagesBySlug = await directus.request(
+    readItems('pages', {
+      filter: {
+        translations: {
+          _and: [
+            {
+              languages_code: { _eq: locale },
+            },
+            {
+              slug: { _eq: slug },
+            },
+          ],
+        },
+      },
+      fields: ['*', { translations: ['*'] }],
+      limit: 1,
+    }),
+  );
+
+  const pageData = pagesBySlug?.[0];
+  console.log('pageData', JSON.stringify(pageData, null, 2));
+
+  const pageDataByLocale = {
+    ...pageData,
+    ...pageData?.translations?.find(
+      (translation: { languages_code: string }) =>
+        translation.languages_code === locale,
+    ),
   };
-  console.log('attributes', attributes);
-  const page =
+  console.log('pageDataByLocale', JSON.stringify(pageDataByLocale, null, 2));
+
+  const builderTemplate = pageData?.builder_template;
+
+  const contentData = {
+    title: pageDataByLocale?.title || '',
+    excerpt: pageDataByLocale?.excerpt || '',
+    content: pageDataByLocale?.content || '',
+  };
+
+  const viewData =
     (await builder
       .get('page', {
         apiKey: process.env.NEXT_PUBLIC_BUILDER_API_KEY!,
-        userAttributes:
-          attributes.urlPath === '/' ? { urlPath: '/home' } : attributes,
+        userAttributes: { urlPath: `/${builderTemplate}` },
         cachebust: true,
       })
       .promise()) || null;
 
-  // if (page) {
-  //   await addAsyncProps(page);
-  // }
-
   return {
     props: {
-      page,
-      attributes: attributes,
+      viewData,
+      contentData,
+      attributes: { urlPath: slug },
       messages: pick(
         (await import(`../../messages/${locale}.json`)).default,
         Pages.messages,
