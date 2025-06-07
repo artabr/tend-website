@@ -1,9 +1,8 @@
-name: 'Netlify Previews'
+name: 'Netlify Prod Builds'
 
 on:
   push:
-    branches-ignore:
-      - main
+    - main
 
 jobs:
   deploy:
@@ -11,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: Development
+      name: Production
       url: ${{ env.NETLIFY_PREVIEW_URL }}
 
     steps:
@@ -23,13 +22,11 @@ jobs:
       - run: bun install
       - run: npm run build
 
-      # Sets the branch name as environment variable
-      - uses: nelonoel/branch-name@v1.0.1
       - uses: artabr/action-netlify-deploy@master
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          deploy_alias: ${{ env.BRANCH_NAME }}
+          NETLIFY_DEPLOY_TO_PROD: true
           build_directory: '.next'
           functions_directory: '.netlify/functions'
           install_command: 'bun install'
