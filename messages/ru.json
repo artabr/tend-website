@@ -1,0 +1,16 @@
+{
+  "PageLayout": {
+    "pageTitle": "Название сайта"
+  },
+  "Pages": {
+    "title": "Главная"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, en {English} ru {Русский} other {Unknown}}"
+  },
+  "Navigation": {
+    "home": "Главная",
+    "test-page": "Тестовая страница"
+  }
+}
