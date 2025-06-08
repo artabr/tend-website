@@ -16,5 +16,3 @@ export default function LocaleSwitcher() {
     </LocaleSwitcherSelect>
   );
 }
-
-LocaleSwitcher.messages = ['LocaleSwitcher'];

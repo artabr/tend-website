@@ -1,11 +1,13 @@
 import BuilderDevTools from '@builder.io/dev-tools/next';
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const nextConfig: NextConfig = BuilderDevTools()({
-  i18n: {
-    locales: ['en', 'ru'],
-    defaultLocale: 'en',
+const withNextIntl = createNextIntlPlugin({
+  experimental: {
+    createMessagesDeclaration: './messages/en.json',
   },
-} satisfies NextConfig);
+});
 
-export default nextConfig;
+const nextConfig: NextConfig = BuilderDevTools()({} satisfies NextConfig);
+
+export default withNextIntl(nextConfig);
