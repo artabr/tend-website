@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+*.d.json.ts
 
 # IDE
 .idea
