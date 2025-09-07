@@ -11,6 +11,7 @@
   },
   "Navigation": {
     "home": "Home",
-    "test-page": "Test page"
+    "features": "Features",
+    "subscribe": "Subscribe"
   }
 }

@@ -7,10 +7,13 @@ export const routing = defineRouting({
   defaultLocale: 'en',
   pathnames: {
     '/': {
-      ru: '/glavnaya',
+      ru: '/home',
     },
-    '/test-page': {
-      ru: '/testovaya-stranitsa',
+    '/#features': {
+      ru: '/#features',
+    },
+    '/#subscribe': {
+      ru: '/#subscribe',
     },
   },
 });
