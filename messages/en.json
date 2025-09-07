@@ -13,5 +13,41 @@
     "home": "Home",
     "features": "Features",
     "subscribe": "Subscribe"
+  },
+  "Content": {
+    "hero": {
+      "headline": "Build Better Habits, One Day at a Time",
+      "subheadline": "We're building the last habit tracker you will ever need.",
+      "call_to_action": "Join the waitlist",
+      "disclaimer": "Join the waitlist below. We will email you when we launch."
+    },
+    "waitlist_section": {
+      "title": "Get notified when we launch",
+      "description": "We’re working on launching in the App Store and on Google Play very soon.\n\nSign up to be notified of our release and we’ll email you when we launch.",
+      "disclaimer": "No spam or unrelated marketing. You’ll only receive one email – when we launch.",
+      "messages": {
+        "error": "Your subscription could not be saved. Please try again.",
+        "success": "Your subscription has been successful."
+      },
+      "action_button": "Notify Me!"
+    },
+    "features": {
+      "calendar_view": {
+        "title": "Detailed calendar view of your progress",
+        "description": "Track your daily progress with our intuitive calendar layout.\n\nSee which days you succeeded, and which days you could push a bit harder."
+      },
+      "overview_view": {
+        "title": "Track your overall progress across multiple habits",
+        "description": "You’ve got a lot going on. Track all your habits in one convenient overview.\n\nSee how successful you’ve been over days of effort."
+      },
+      "reward_section": {
+        "heading": "Reward yourself",
+        "description": "Feel proud of your progress.\n\nSee how much effort you’ve invested in building your habits.\n\nTrack your habits by time, day, and duration."
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Tend Habit tracker. All Rights Reserved.",
+      "privacy_policy": "Privacy Policy"
+    }
   }
 }
