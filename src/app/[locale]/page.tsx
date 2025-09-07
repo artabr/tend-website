@@ -1,4 +1,5 @@
 import { BuilderPageComponent } from '@/components/builder/BuilderPageComponent';
+import { getTranslatedContent } from '@/content/getTranslatedContent';
 import { getPageContent } from '@/core/directus/getPageContent';
 import type { Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -23,10 +24,18 @@ export default async function Page({ params }: Props) {
 
   const { contentData, builderTemplate } = pageContent;
 
+  const translatedContent = await getTranslatedContent();
+  const enrichedContentData = {
+    ...contentData,
+    ...translatedContent,
+  };
+
+  console.log(enrichedContentData);
+
   return (
     <BuilderPageComponent
       builderModelName={builderModelName}
-      contentData={contentData}
+      contentData={enrichedContentData}
       builderTemplate={builderTemplate}
     />
   );
