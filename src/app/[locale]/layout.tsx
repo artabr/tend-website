@@ -43,6 +43,13 @@ export default async function LocaleLayout({
           strategy="lazyOnload"
           src="https://sibforms.com/forms/end-form/build/main.js"
         />
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="d8bdbe4e-7251-4d95-b244-3231ae896f35"
+          data-blockingmode="auto"
+          type="text/javascript"
+        />
       </body>
     </html>
   );
