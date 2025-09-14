@@ -20,7 +20,8 @@
         "headline": "Build Better Habits, One Day at a Time",
         "subHeadline": "We're building the last habit tracker you will ever need.",
         "callToAction": "Join the waitlist",
-        "disclaimer": "Join the waitlist below. We will email you when we launch."
+        "disclaimer": "Join the waitlist below. We will email you when we launch.",
+        "whyLink": "Why?"
       },
       "waitlistSection": {
         "title": "Get notified when we launch",
@@ -41,6 +42,24 @@
           "heading": "Reward yourself",
           "description": "Feel proud of your progress.\n\nSee how much effort you’ve invested in building your habits.\n\nTrack your habits by the amount of time spent or the number of times completed."
         }
+      },
+      "whySection": {
+        "title": "Why choose our habit tracker?",
+        "disclaimer": "We're not there yet. The first release will miss some features, but it'll already be more powerful than most trackers out there.\n\nCheck out our roadmap and follow our journey on social media.",
+        "blocks": {
+          "1": {
+            "title": "A tracker superapp",
+            "description": "We're not building just another habit tracker like the thousands you've already installed.\n\nWe're building a superapp. A habit tracker you'll actually use."
+          },
+          "2": {
+            "title": "Complete integration",
+            "description": "It'll fit into your life. By syncing across devices, connecting with friends, managing your plans, to-dos, and daily routines."
+          }
+        }
+      },
+      "followUsSection": {
+        "title": "Follow our development journey on social media",
+        "description": "We build our app in public and share the journey, every twist and turn along the way."
       },
       "footer": {
         "copyright": "© 2025 Tend Habit tracker. All Rights Reserved.",
