@@ -38,12 +38,12 @@ export const getTranslatedContent = async () => {
         disclaimer: t('home.whySection.disclaimer'),
         blocks: [
           {
-            title: t('home.whySection.blocks.0.title'),
-            description: t('home.whySection.blocks.0.description'),
-          },
-          {
             title: t('home.whySection.blocks.1.title'),
             description: t('home.whySection.blocks.1.description'),
+          },
+          {
+            title: t('home.whySection.blocks.2.title'),
+            description: t('home.whySection.blocks.2.description'),
           },
         ],
       },

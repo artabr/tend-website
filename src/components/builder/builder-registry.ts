@@ -1,10 +1,11 @@
 import { Builder, builder } from '@builder.io/react';
 import Counter from '../custom/Counter/Counter';
+import AccordionWrapper from '../custom/AccordionWrapper';
 
 // TODO: Check if it's safe to use the Builder API key here
 // It's a public facing part
 // Maybe we should put it here only in development environment
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
 
 Builder.registerComponent(Counter, {
   name: 'Counter',
@@ -12,6 +13,37 @@ Builder.registerComponent(Counter, {
     {
       name: 'initialCount',
       type: 'number',
+    },
+  ],
+});
+
+Builder.registerComponent(AccordionWrapper, {
+  name: 'AccordionWrapper',
+  inputs: [
+    {
+      name: 'items',
+      type: 'list',
+      subFields: [
+        {
+          name: 'title',
+          type: 'string',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'longText',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'allowMultiple',
+      type: 'boolean',
+      defaultValue: false,
+    },
+    {
+      name: 'className',
+      type: 'string',
     },
   ],
 });
