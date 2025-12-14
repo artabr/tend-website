@@ -32,6 +32,8 @@ export async function BuilderPageComponent({
     // Get the page content from Builder with the specified options
     .get(builderModelName, {
       userAttributes: { urlPath: `/${builderTemplate}` },
+      enrich: true,
+      includeRefs: true,
     })
     // Convert the result to a promise
     .toPromise();

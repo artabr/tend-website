@@ -1,7 +1,7 @@
-export const getBuilderTemplate = (slug: string) => {
+export const getBuilderTemplate = (slug: string, locale: string) => {
   switch (slug) {
-    case '/home':
-      return 'home';
+    case 'home':
+      return `${locale}/home`;
     default:
       return undefined;
   }

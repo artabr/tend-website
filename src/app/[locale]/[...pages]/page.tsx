@@ -1,6 +1,6 @@
 import { BuilderPageComponent } from '@/components/builder/BuilderPageComponent';
 import { getBuilderTemplate } from '@/content/getBuilderTemplate';
-import { getTranslatedContent } from '@/content/getTranslatedContent';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
 
@@ -10,24 +10,30 @@ type Props = {
 
 export const dynamic = 'force-dynamic';
 
+export async function generateMetadata({ params }: Props) {
+  const { locale, pages } = await params;
+  const slug = `${pages?.join('/') || 'home'}`;
+
+  return generatePageMetadata(slug, locale);
+}
+
 export default async function Page({ params }: Props) {
+  await import('isolated-vm');
+
   const { locale, pages } = await params;
 
   const builderModelName = 'page';
-  const slug = `/${pages?.join('/') || 'home'}`;
+  const slug = `${pages?.join('/') || 'home'}`;
 
-  const builderTemplate = getBuilderTemplate(slug);
+  const builderTemplate = getBuilderTemplate(slug, locale);
 
   if (!builderTemplate) {
     return notFound();
   }
 
-  const contentData = await getTranslatedContent();
-
   return (
     <BuilderPageComponent
       builderModelName={builderModelName}
-      contentData={contentData}
       builderTemplate={builderTemplate}
     />
   );
