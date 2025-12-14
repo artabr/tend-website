@@ -1,6 +1,7 @@
 import BuilderDevTools from '@builder.io/dev-tools/next';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { withContentlayer } from 'next-contentlayer';
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
@@ -8,6 +9,8 @@ const withNextIntl = createNextIntlPlugin({
   },
 });
 
-const nextConfig: NextConfig = BuilderDevTools()({} satisfies NextConfig);
+const nextConfig: NextConfig = BuilderDevTools()({
+  serverExternalPackages: ['isolated-vm'],
+} satisfies NextConfig);
 
-export default withNextIntl(nextConfig);
+export default withContentlayer(withNextIntl(nextConfig));

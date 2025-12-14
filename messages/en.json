@@ -14,6 +14,23 @@
     "features": "Features",
     "subscribe": "Subscribe"
   },
+  "Metadata": {
+    "home": {
+      "title": "Tend — Habit Tracker | Build Better Habits",
+      "description": "Build better habits, one day at a time. Tend is a habit tracker built to help you stay consistent and see your progress clearly.",
+      "keywords": "Tend, habit tracker, habits, habit tracking, productivity, self improvement, routines"
+    },
+    "default": {
+      "title": "Tend — Habit Tracker",
+      "description": "Tend is a habit tracker built to help you build better habits and track progress over time.",
+      "keywords": "Tend, habit tracker, habits, productivity, routines"
+    },
+    "site": {
+      "name": "Tend Habit tracker",
+      "url": "https://tend-app.pro",
+      "locale": "en_US"
+    }
+  },
   "Content": {
     "home": {
       "hero": {

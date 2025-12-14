@@ -1,0 +1,13 @@
+# Ignore everything by default
+*
+
+# Only format markdown files
+!*.md
+!**/*.md
+
+# But ignore certain directories
+node_modules/
+.next/
+.git/
+dist/
+build/

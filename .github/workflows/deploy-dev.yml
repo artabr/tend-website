@@ -37,6 +37,7 @@ jobs:
           build_directory: '.next'
           functions_directory: '.netlify/functions'
           install_command: 'bun install'
+          command_extra_flags: "--context branch-deploy"
 
       # Creates a status check with link to preview
       - name: Status check
