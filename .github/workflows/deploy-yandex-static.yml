@@ -48,16 +48,15 @@ jobs:
 
       - name: Export Yandex Cloud credentials
         id: yc-creds
+        env:
+          YC_SERVICE_ACCOUNT_ID: ${{ vars.YC_SERVICE_ACCOUNT_ID }}
         run: |
           echo "YC_TOKEN=$(yc iam create-token)" >> $GITHUB_ENV
           echo "YC_CLOUD_ID=$(yc config get cloud-id)" >> $GITHUB_ENV
           echo "YC_FOLDER_ID=$(yc config get folder-id)" >> $GITHUB_ENV
           
-          # Get service account ID
-          SA_ID=$(yc config get service-account-id)
-          
           # Create static access key and parse output
-          ACCESS_KEY_JSON=$(yc iam access-key create --service-account-id $SA_ID --format json)
+          ACCESS_KEY_JSON=$(yc iam access-key create --service-account-id $YC_SERVICE_ACCOUNT_ID --format json)
           echo "YC_STORAGE_ACCESS_KEY=$(echo $ACCESS_KEY_JSON | jq -r '.access_key.key_id')" >> $GITHUB_ENV
           echo "YC_STORAGE_SECRET_KEY=$(echo $ACCESS_KEY_JSON | jq -r '.secret')" >> $GITHUB_ENV
 
