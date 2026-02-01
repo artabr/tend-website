@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata() {
-  const locale = 'en';
+  const locale = 'ru';
   const slug = 'index';
 
   return generatePageMetadata(slug, locale);
@@ -28,7 +28,7 @@ export async function generateMetadata() {
 export default async function Page({ params }: Props) {
   await import('isolated-vm');
 
-  const locale = 'en';
+  const locale = 'ru';
   const slug = 'index';
 
   const builderModelName = 'page';

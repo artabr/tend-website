@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "check": "biome check --write src",
-    "patch-render-strategy": "bun run scripts/patch-render-strategy.ts"
+    "patch-render-strategy": "bun run scripts/patch-render-strategy.ts",
+    "patch-static-export": "bun run scripts/patch-static-export.ts"
   },
   "dependencies": {
     "@builder.io/dev-tools": "^1.13.5",
