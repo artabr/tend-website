@@ -3,7 +3,7 @@ name: 'Yandex Cloud Static Export'
 on:
   push:
     branches:
-      - main
+      - ycloud/**
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
     environment:
       name: Yandex Cloud Production
-      url: https://${{ vars.DOMAIN }}
+      url: https://${{ vars.YC_DOMAIN }}
 
     env:
       NEXT_PUBLIC_BUILDER_API_KEY: ${{ secrets.NEXT_PUBLIC_BUILDER_API_KEY }}
@@ -42,9 +42,24 @@ jobs:
           terraform_version: ">=0.136.0"
 
       - name: Configure Yandex Cloud CLI
-        uses: yc-actions/yc-cli-install@v1
+        uses: artabr/yc-cli-install@master
         with:
-          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          SA_KEY: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Export Yandex Cloud credentials
+        id: yc-creds
+        run: |
+          echo "YC_TOKEN=$(yc iam create-token)" >> $GITHUB_ENV
+          echo "YC_CLOUD_ID=$(yc config get cloud-id)" >> $GITHUB_ENV
+          echo "YC_FOLDER_ID=$(yc config get folder-id)" >> $GITHUB_ENV
+          
+          # Get service account ID
+          SA_ID=$(yc config get service-account-id)
+          
+          # Create static access key and parse output
+          ACCESS_KEY_JSON=$(yc iam access-key create --service-account-id $SA_ID --format json)
+          echo "YC_STORAGE_ACCESS_KEY=$(echo $ACCESS_KEY_JSON | jq -r '.access_key.key_id')" >> $GITHUB_ENV
+          echo "YC_STORAGE_SECRET_KEY=$(echo $ACCESS_KEY_JSON | jq -r '.secret')" >> $GITHUB_ENV
 
       - name: Terraform Init
         working-directory: ./terraform
@@ -53,29 +68,29 @@ jobs:
       - name: Terraform Plan
         working-directory: ./terraform
         env:
-          TF_VAR_folder_id: ${{ secrets.YC_FOLDER_ID }}
-          TF_VAR_domain: ${{ vars.DOMAIN }}
-          TF_VAR_cert_id: ${{ secrets.YC_CERT_ID }}
-          TF_VAR_dns_zone_id: ${{ secrets.YC_DNS_ZONE_ID }}
+          TF_VAR_folder_id: ${{ env.YC_FOLDER_ID }}
+          TF_VAR_domain: ${{ vars.YC_DOMAIN }}
+          TF_VAR_cert_id: ${{ vars.YC_CERT_ID }}
+          TF_VAR_dns_zone_id: ${{ vars.YC_DNS_ZONE_ID }}
         run: terraform plan
 
       - name: Terraform Apply
         working-directory: ./terraform
         env:
-          TF_VAR_folder_id: ${{ secrets.YC_FOLDER_ID }}
-          TF_VAR_domain: ${{ vars.DOMAIN }}
-          TF_VAR_cert_id: ${{ secrets.YC_CERT_ID }}
-          TF_VAR_dns_zone_id: ${{ secrets.YC_DNS_ZONE_ID }}
+          TF_VAR_folder_id: ${{ env.YC_FOLDER_ID }}
+          TF_VAR_domain: ${{ vars.YC_DOMAIN }}
+          TF_VAR_cert_id: ${{ vars.YC_CERT_ID }}
+          TF_VAR_dns_zone_id: ${{ vars.YC_DNS_ZONE_ID }}
         run: terraform apply -auto-approve
 
       - name: Upload static files to Yandex Object Storage
         working-directory: ./out
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.YC_STORAGE_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_STORAGE_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ env.YC_STORAGE_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.YC_STORAGE_SECRET_KEY }}
           AWS_DEFAULT_REGION: ru-central1
         run: |
-          aws s3 sync . s3://${{ vars.DOMAIN }} \
+          aws s3 sync . s3://${{ vars.YC_DOMAIN }}-frontend-bucket \
             --endpoint-url=https://storage.yandexcloud.net \
             --delete \
             --acl public-read
@@ -83,4 +98,4 @@ jobs:
       - name: Deployment status
         run: |
           echo "✅ Static export deployed successfully to Yandex Cloud"
-          echo "🌐 URL: https://${{ vars.DOMAIN }}"
+          echo "🌐 URL: https://${{ vars.YC_DOMAIN }}"
