@@ -39,12 +39,13 @@ data "yandex_dns_zone" "imported_dns_zone" {
 
 # Создание бакета
 
-resource "yandex_storage_bucket" "main-bucket" {
-  bucket    = var.domain
+resource "yandex_storage_bucket" "frontend_bucket" {
+  bucket    = "${var.domain}-frontend-bucket"
   folder_id = var.folder_id
   max_size  = "1073741824"
   website {
     index_document = "index.html"
+    error_document = "404.html"
   }
   https {
     certificate_id = data.yandex_cm_certificate.imported_certificate.id
@@ -55,46 +56,37 @@ resource "yandex_storage_bucket" "main-bucket" {
 
 # Настройка прав доступа для бакета
 
-resource "yandex_storage_bucket_grant" "my_grant_main" {
-  bucket = yandex_storage_bucket.main-bucket.id
+resource "yandex_storage_bucket_grant" "frontend_bucket_grant" {
+  bucket = yandex_storage_bucket.frontend_bucket.id
   grant {
     uri         = "http://acs.amazonaws.com/groups/global/AllUsers"
     permissions = ["READ"]
     type        = "Group"
   }
-  depends_on = [yandex_storage_bucket.main-bucket]
-}
-
-# Загрузка объекта в бакет
-
-resource "yandex_storage_object" "index-page" {
-  bucket     = yandex_storage_bucket.main-bucket.id
-  key        = "index.html"
-  source     = "index.html"
-  depends_on = [yandex_storage_bucket_grant.my_grant_main]
+  depends_on = [yandex_storage_bucket.frontend_bucket]
 }
 
 # Создание записи DNS
 
-resource "yandex_dns_recordset" "rs1" {
+resource "yandex_dns_recordset" "dns_recordset" {
   zone_id    = data.yandex_dns_zone.imported_dns_zone.id
-  name       = "cdn"
+  name       = "@"
   type       = "CNAME"
   ttl        = 600
-  data       = ["${data.yandex_cdn_resource.my_resource.provider_cname}"]
-  depends_on = [yandex_cdn_resource.my_resource]
+  data       = [data.yandex_cdn_resource.cdn_resource.provider_cname]
+  depends_on = [yandex_cdn_resource.cdn_resource]
 }
 
 # Получение информации о ресурсе CDN
 
-data "yandex_cdn_resource" "my_resource" {
-  resource_id = yandex_cdn_resource.my_resource.id
+data "yandex_cdn_resource" "cdn_resource" {
+  resource_id = yandex_cdn_resource.cdn_resource.id
 }
 
 # Создание группы источников
 
-resource "yandex_cdn_origin_group" "my_group" {
-  name     = "updates-origin-group"
+resource "yandex_cdn_origin_group" "cdn_origin_group" {
+  name     = "${var.domain}-frontend-origin-group"
   use_next = true
   origin {
     source = "${var.domain}.website.yandexcloud.net"
@@ -103,11 +95,11 @@ resource "yandex_cdn_origin_group" "my_group" {
 
 # Создание ресурса CDN
 
-resource "yandex_cdn_resource" "my_resource" {
-  cname             = "${var.domain}"
+resource "yandex_cdn_resource" "cdn_resource" {
+  cname             = var.domain
   active            = true
   origin_protocol   = "http"
-  origin_group_name = yandex_cdn_origin_group.my_group.name
+  origin_group_name = yandex_cdn_origin_group.cdn_origin_group.name
   options {
     custom_host_header     = "${var.domain}.website.yandexcloud.net"
     redirect_http_to_https = true
