@@ -104,10 +104,9 @@ resource "yandex_cdn_origin_group" "cdn_origin_group" {
 resource "yandex_cdn_resource" "cdn_resource" {
   cname             = var.domain
   active            = true
-  origin_protocol   = "http"
+  origin_protocol   = "https"
   origin_group_name = yandex_cdn_origin_group.cdn_origin_group.name
   options {
-    custom_host_header     = "${local.domain_normalized}-frontend-bucket.website.yandexcloud.net"
     redirect_http_to_https = true
   }
   ssl_certificate {
