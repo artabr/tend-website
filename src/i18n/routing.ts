@@ -5,9 +5,10 @@ import { defineRouting } from 'next-intl/routing';
 export const routing = defineRouting({
   locales: ['en', 'ru'],
   defaultLocale: 'en',
+  localePrefix: 'as-needed',
   pathnames: {
     '/': {
-      ru: '/home',
+      ru: '/',
     },
     '/#features': {
       ru: '/#features',

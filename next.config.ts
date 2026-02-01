@@ -10,6 +10,7 @@ const withNextIntl = createNextIntlPlugin({
 });
 
 const nextConfig: NextConfig = BuilderDevTools()({
+  output: 'export',
   serverExternalPackages: ['isolated-vm'],
 } satisfies NextConfig);
 

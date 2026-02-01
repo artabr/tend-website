@@ -6,6 +6,7 @@
     "dev": "next dev",
     "prebuild": "bun run patch-render-strategy",
     "build": "next build",
+    "build:no-render-strategy": "next build",
     "start": "next start",
     "lint": "next lint",
     "check": "biome check --write src",

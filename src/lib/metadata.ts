@@ -18,7 +18,7 @@ export async function getLocalizedMetadata(
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
   // Get page-specific metadata or fall back to default
-  const pageKey = slug === 'home' ? 'home' : 'default';
+  const pageKey = slug === 'index' ? 'home' : 'default';
 
   return {
     title: t(`${pageKey}.title`),
@@ -35,7 +35,7 @@ export async function generatePageMetadata(
   locale: Locale
 ): Promise<Metadata> {
   const metadata = await getLocalizedMetadata(slug, locale);
-  const pageUrl = `${metadata.siteUrl}/${locale === 'en' ? '' : locale}${slug === 'home' ? '' : `/${slug}`}`.replace(/\/+/g, '/').replace(/\/$/, '') || metadata.siteUrl;
+  const pageUrl = `${metadata.siteUrl}/${locale === 'en' ? '' : locale}${slug === 'index' ? '' : `/${slug}`}`.replace(/\/+/g, '/').replace(/\/$/, '') || metadata.siteUrl;
 
   return {
     title: metadata.title,
@@ -54,8 +54,8 @@ export async function generatePageMetadata(
     alternates: {
       canonical: pageUrl,
       languages: {
-        'en': `${metadata.siteUrl}${slug === 'home' ? '' : `/${slug}`}`,
-        'ru': `${metadata.siteUrl}/ru${slug === 'home' ? '' : `/${slug}`}`,
+        'en': `${metadata.siteUrl}${slug === 'index' ? '' : `/${slug}`}`,
+        'ru': `${metadata.siteUrl}/ru${slug === 'index' ? '' : `/${slug}`}`,
       },
     },
     robots: {
