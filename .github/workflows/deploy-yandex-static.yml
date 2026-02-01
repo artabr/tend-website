@@ -50,10 +50,15 @@ jobs:
         id: yc-creds
         env:
           YC_SERVICE_ACCOUNT_ID: ${{ vars.YC_SERVICE_ACCOUNT_ID }}
+          YC_DOMAIN: ${{ vars.YC_DOMAIN }}
         run: |
           echo "YC_TOKEN=$(yc iam create-token)" >> $GITHUB_ENV
           echo "YC_CLOUD_ID=$(yc config get cloud-id)" >> $GITHUB_ENV
           echo "YC_FOLDER_ID=$(yc config get folder-id)" >> $GITHUB_ENV
+          
+          # Normalize domain (replace dots with hyphens)
+          YC_DOMAIN_NORMALIZED=$(echo $YC_DOMAIN | tr '.' '-')
+          echo "YC_DOMAIN_NORMALIZED=$YC_DOMAIN_NORMALIZED" >> $GITHUB_ENV
           
           # Create static access key and parse output
           ACCESS_KEY_JSON=$(yc iam access-key create --service-account-id $YC_SERVICE_ACCOUNT_ID --format json)
@@ -67,7 +72,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ env.YC_STORAGE_SECRET_KEY }}
           AWS_DEFAULT_REGION: ru-central1
         run: |
-          aws s3 sync . s3://${{ vars.YC_DOMAIN }}-frontend-bucket \
+          aws s3 sync . s3://${{ env.YC_DOMAIN_NORMALIZED }}-frontend-bucket \
             --endpoint-url=https://storage.yandexcloud.net \
             --delete \
             --acl public-read

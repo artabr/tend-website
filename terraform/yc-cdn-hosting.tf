@@ -16,6 +16,12 @@ variable "dns_zone_id" {
   type = string
 }
 
+# Локальные переменные
+
+locals {
+  domain_normalized = replace(var.domain, ".", "-")
+}
+
 # Настройка провайдера
 
 terraform {
@@ -40,7 +46,7 @@ data "yandex_dns_zone" "imported_dns_zone" {
 # Создание бакета
 
 resource "yandex_storage_bucket" "frontend_bucket" {
-  bucket    = "${var.domain}-frontend-bucket"
+  bucket    = "${local.domain_normalized}-frontend-bucket"
   folder_id = var.folder_id
   max_size  = "1073741824"
   website {
@@ -86,10 +92,10 @@ data "yandex_cdn_resource" "cdn_resource" {
 # Создание группы источников
 
 resource "yandex_cdn_origin_group" "cdn_origin_group" {
-  name     = "${var.domain}-frontend-origin-group"
+  name     = "${local.domain_normalized}-frontend-origin-group"
   use_next = true
   origin {
-    source = "${var.domain}.website.yandexcloud.net"
+    source = "${local.domain_normalized}-frontend-bucket.website.yandexcloud.net"
   }
 }
 
@@ -101,7 +107,7 @@ resource "yandex_cdn_resource" "cdn_resource" {
   origin_protocol   = "http"
   origin_group_name = yandex_cdn_origin_group.cdn_origin_group.name
   options {
-    custom_host_header     = "${var.domain}.website.yandexcloud.net"
+    custom_host_header     = "${local.domain_normalized}-frontend-bucket.website.yandexcloud.net"
     redirect_http_to_https = true
   }
   ssl_certificate {
