@@ -47,6 +47,12 @@ export const Scripts = () => {
 
           gtag('config', 'G-6P6M0B3N2W');`}
       </Script>
+      <Script
+        id="Cookiebot"
+        src="https://consent.cookiebot.com/uc.js"
+        data-cbid="d8bdbe4e-7251-4d95-b244-3231ae896f35"
+        data-blockingmode="auto"
+      />
     </>
   );
 };
