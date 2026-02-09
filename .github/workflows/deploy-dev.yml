@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - main
+      - ycloud/**
   workflow_dispatch:
 
 jobs:
@@ -25,7 +26,12 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: npm run build
+
+      - name: Patch next.config.ts render strategy
+        run: bun run scripts/patch-render-strategy.ts
+
+      - name: Build project
+        run: bun run build
 
       # Sets the branch name as environment variable
       - uses: nelonoel/branch-name@v1.0.1

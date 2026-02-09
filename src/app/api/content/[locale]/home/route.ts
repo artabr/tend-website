@@ -2,6 +2,12 @@ import { routing } from '@/i18n/routing';
 import { allHomeContents } from 'contentlayer/generated';
 import { type NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-static';
+
+export async function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'ru' }];
+}
+
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ locale: string }> },

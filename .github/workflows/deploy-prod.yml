@@ -25,7 +25,12 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: npm run build
+
+      - name: Patch next.config.ts render strategy
+        run: bun run scripts/patch-render-strategy.ts
+
+      - name: Build project
+        run: bun run build
 
       - uses: artabr/action-netlify-deploy@master
         with:
