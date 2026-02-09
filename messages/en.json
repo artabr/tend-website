@@ -12,7 +12,8 @@
   "Navigation": {
     "home": "Home",
     "features": "Features",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "docs": "Documentation"
   },
   "Metadata": {
     "home": {

@@ -16,5 +16,8 @@ export const routing = defineRouting({
     '/#subscribe': {
       ru: '/#subscribe',
     },
+    'https://docs.tend-app.pro/en': {
+      ru: 'https://docs.tend-app.pro/en',
+    },
   },
 });

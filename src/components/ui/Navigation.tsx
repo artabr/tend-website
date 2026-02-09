@@ -10,8 +10,9 @@ export default function Navigation() {
       <nav className="container flex justify-between p-2 text-white">
         <div>
           <NavigationLink href="/">{t('home')}</NavigationLink>
-          <NavigationLink href="/#features">{t('features')}</NavigationLink>
-          <NavigationLink href="/#subscribe">{t('subscribe')}</NavigationLink>
+          <NavigationLink href="https://docs.tend-app.pro/en">
+            {t('docs')}
+          </NavigationLink>
         </div>
         <LocaleSwitcher />
       </nav>

@@ -12,7 +12,8 @@
   "Navigation": {
     "home": "Главная",
     "features": "Возможности",
-    "subscribe": "Подписаться"
+    "subscribe": "Подписаться",
+    "docs": "Руководство"
   },
   "Metadata": {
     "home": {
