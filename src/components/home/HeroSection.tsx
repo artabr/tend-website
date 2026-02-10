@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   Heading,
+  Image,
   Link,
   Text,
   VStack,
@@ -24,94 +25,69 @@ export function HeroSection({
   disclaimer,
 }: HeroSectionProps) {
   return (
-    <Box
-      as="section"
-      minH="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Container maxW="container.xl" pt={24}>
-        <VStack gap={8} textAlign="center" maxW="5xl" mx="auto">
-          <Box position="relative">
-            <Heading
-              as="h1"
-              fontSize={{ base: '3xl', md: '5xl' }}
-              fontWeight="bold"
-              lineHeight={1.15}
-            >
-              {headline}
-            </Heading>
-            <Box
-              position="absolute"
-              bottom="-6px"
-              left={{ base: 4, lg: 10 }}
-              zIndex={-1}
-              display={{ base: 'none', md: 'block' }}
-            >
-              <svg
-                width="223"
-                height="12"
-                viewBox="0 0 223 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1.30466 10.7431C39.971 5.28788 76.0949 3.02 115.082 2.30401C143.893 1.77489 175.871 0.628649 204.399 3.63102C210.113 3.92052 215.332 4.91391 221.722 6.06058"
-                  stroke="url(#paint0_linear_hero)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_hero"
-                    x1="19.0416"
-                    y1="4.03539"
-                    x2="42.8362"
-                    y2="66.9459"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop offset="0.2" stopColor="#5fc3e7" />
-                    <stop offset="1" stopColor="#47b9e3" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </Box>
+    <Box as="section" pt={{ base: 8, md: 16 }} pb={{ base: 12, md: 20 }}>
+      <Container maxW="container.lg">
+        <VStack gap={6} textAlign="center">
+          {/* Logo */}
+          <Box
+            w={10}
+            h={10}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text fontSize="2xl" fontWeight="bold" color="primary.500">
+              T
+            </Text>
           </Box>
 
-          <Text fontSize="xl" color="fg.muted" maxW="3xl">
-            {subHeadline}
-          </Text>
+          {/* Headline */}
+          <Heading
+            as="h1"
+            fontSize={{ base: '2xl', md: '4xl', lg: '5xl' }}
+            fontWeight="bold"
+            lineHeight={1.2}
+            maxW="600px"
+          >
+            {headline}
+          </Heading>
 
-          <VStack gap={4}>
-            <Button
-              asChild
-              size="lg"
-              colorPalette="blue"
-              bgGradient="to-r"
-              gradientFrom="primary.400"
-              gradientTo="primary.600"
-              _hover={{ opacity: 0.9 }}
-            >
-              <a href="#waitlist">
-                {callToAction}
-                <span>↓</span>
-              </a>
-            </Button>
+          {/* Subheadline with Why link */}
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="fg.muted">
+            {subHeadline}{' '}
             <Link
               href="#why"
-              fontSize="lg"
+              color="primary.500"
               fontWeight="medium"
-              color="primary.400"
-              _hover={{ textDecoration: 'underline' }}
+              textDecoration="underline"
+              _hover={{ color: 'primary.600' }}
             >
               {whyLink}
             </Link>
-          </VStack>
-
-          <Text fontSize="sm" color="fg.subtle" maxW="2xl" mt={4}>
-            {disclaimer}
           </Text>
+
+          {/* CTA Button */}
+          <Button
+            asChild
+            size="lg"
+            bg="slate.850"
+            color="white"
+            px={8}
+            borderRadius="full"
+            _hover={{ bg: 'gray.700' }}
+          >
+            <a href="#waitlist">{callToAction}</a>
+          </Button>
+
+          {/* Phone Mockup Image */}
+          <Box mt={8} maxW={{ base: '280px', md: '360px' }} mx="auto">
+            <Image
+              src="/images/Main hero image.png"
+              alt="Tend app habit tracker interface"
+              w="full"
+              h="auto"
+            />
+          </Box>
         </VStack>
       </Container>
     </Box>

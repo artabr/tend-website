@@ -1,12 +1,4 @@
-import {
-  Box,
-  Container,
-  Flex,
-  HStack,
-  Link,
-  Separator,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Container, Flex, HStack, Link, Text } from '@chakra-ui/react';
 
 interface FooterProps {
   copyright: string;
@@ -15,38 +7,30 @@ interface FooterProps {
 
 export function Footer({ copyright, privacyPolicy }: FooterProps) {
   return (
-    <Box as="footer" bg="bg.subtle" p={10}>
-      <Container maxW="container.xl">
+    <Box as="footer" py={8}>
+      <Container maxW="container.lg">
         <Flex
           w="full"
           flexDirection={{ base: 'column', sm: 'row' }}
           alignItems="center"
           justifyContent="space-between"
-          gap={6}
+          gap={4}
         >
-          <HStack gap={3}>
-            <Text fontSize="xl" fontWeight="bold">
+          <HStack gap={2}>
+            <Text fontSize="lg" fontWeight="bold" color="primary.500">
+              T
+            </Text>
+            <Text fontSize="md" fontWeight="medium">
               Tend
             </Text>
           </HStack>
 
-          <HStack as="nav" gap={6}>
-            <Link
-              href="/privacy"
-              fontWeight="medium"
-              color="fg.muted"
-              _hover={{ textDecoration: 'underline' }}
-            >
+          <HStack as="nav" gap={4} fontSize="sm" color="fg.muted">
+            <Link href="/privacy" _hover={{ textDecoration: 'underline' }}>
               {privacyPolicy}
             </Link>
           </HStack>
         </Flex>
-
-        <Separator my={6} />
-
-        <Text textAlign="center" fontSize="md">
-          {copyright}
-        </Text>
       </Container>
     </Box>
   );
