@@ -1,5 +1,7 @@
 'use client';
 
+import { Box, Card, Container, Heading, Text, VStack } from '@chakra-ui/react';
+
 interface WaitlistSectionProps {
   title: string;
   description: string;
@@ -14,25 +16,38 @@ export function WaitlistSection({
   actionButton,
 }: WaitlistSectionProps) {
   return (
-    <section id="waitlist" className="bg-base-200 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body mx-auto max-w-2xl text-center">
-            <h2 className="text-base-content mb-6 text-3xl font-bold sm:text-4xl">
-              {title}
-            </h2>
-            <p className="text-base-content/80 mb-8 whitespace-pre-line text-lg">
-              {description}
-            </p>
+    <Box
+      as="section"
+      id="waitlist"
+      bg="bg.subtle"
+      py={{ base: 16, sm: 24, lg: 32 }}
+    >
+      <Container maxW="container.xl" px={{ base: 4, sm: 6, lg: 8 }}>
+        <Card.Root shadow="xl">
+          <Card.Body>
+            <VStack maxW="2xl" mx="auto" textAlign="center" gap={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: '3xl', sm: '4xl' }}
+                fontWeight="bold"
+              >
+                {title}
+              </Heading>
+              <Text fontSize="lg" color="fg.muted" whiteSpace="pre-line">
+                {description}
+              </Text>
 
-            <div className="mb-6">
-              <div id="brevo-form-container" className="brevo-form" />
-            </div>
+              <Box mb={6} w="full">
+                <Box id="brevo-form-container" className="brevo-form" />
+              </Box>
 
-            <p className="text-base-content/60 text-sm">{disclaimer}</p>
-          </div>
-        </div>
-      </div>
-    </section>
+              <Text fontSize="sm" color="fg.subtle">
+                {disclaimer}
+              </Text>
+            </VStack>
+          </Card.Body>
+        </Card.Root>
+      </Container>
+    </Box>
   );
 }

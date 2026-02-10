@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import clsx from 'clsx';
+import { Box } from '@chakra-ui/react';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { ComponentProps } from 'react';
 
@@ -14,14 +14,20 @@ export default function NavigationLink({
   const isActive = pathname === href;
 
   return (
-    <Link
-      aria-current={isActive ? 'page' : undefined}
-      className={clsx(
-        'inline-block px-2 py-3 transition-colors',
-        isActive ? 'text-white' : 'text-gray-400 hover:text-gray-200',
-      )}
-      href={href}
-      {...rest}
-    />
+    <Box
+      asChild
+      display="inline-block"
+      px={2}
+      py={3}
+      transition="colors 0.2s"
+      color={isActive ? 'white' : 'gray.400'}
+      _hover={{ color: 'gray.200' }}
+    >
+      <Link
+        aria-current={isActive ? 'page' : undefined}
+        href={href}
+        {...rest}
+      />
+    </Box>
   );
 }

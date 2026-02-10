@@ -2,6 +2,7 @@ import EnvScript from '@/components/common/EnvScript';
 import { Scripts } from '@/components/common/Scripts';
 import { HomePage } from '@/components/home/HomePage';
 import PageLayout from '@/components/ui/PageLayout';
+import { Provider } from '@/components/ui/provider';
 import { getHomeContent } from '@/content/getHomeContent';
 import { generatePageMetadata } from '@/lib/metadata';
 import { type Locale, NextIntlClientProvider } from 'next-intl';
@@ -31,14 +32,16 @@ export default async function Page({ params }: Props) {
   const homeContent = await getHomeContent();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <EnvScript />
       <body>
-        <NextIntlClientProvider>
-          <PageLayout>
-            <HomePage {...homeContent} />
-          </PageLayout>
-        </NextIntlClientProvider>
+        <Provider>
+          <NextIntlClientProvider>
+            <PageLayout>
+              <HomePage {...homeContent} />
+            </PageLayout>
+          </NextIntlClientProvider>
+        </Provider>
         <Scripts />
       </body>
     </html>

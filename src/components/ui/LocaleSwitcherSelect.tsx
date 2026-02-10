@@ -1,7 +1,11 @@
 'use client';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import clsx from 'clsx';
+import { Box, Text } from '@chakra-ui/react';
+import {
+  NativeSelectField,
+  NativeSelectRoot,
+} from '@/components/ui/native-select';
 import type { Locale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { type ChangeEvent, type ReactNode, useTransition } from 'react';
@@ -36,22 +40,23 @@ export default function LocaleSwitcherSelect({
   }
 
   return (
-    <label
-      className={clsx(
-        'relative text-gray-400',
-        isPending && 'transition-opacity [&:disabled]:opacity-30',
-      )}
+    <Box
+      position="relative"
+      color="gray.400"
+      opacity={isPending ? 0.3 : 1}
+      transition="opacity 0.2s"
     >
-      <p className="sr-only">{label}</p>
-      <select
-        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6"
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
-      >
-        {children}
-      </select>
-      <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
-    </label>
+      <Text srOnly>{label}</Text>
+      <NativeSelectRoot size="sm" variant="plain" disabled={isPending}>
+        <NativeSelectField
+          defaultValue={defaultValue}
+          onChange={onSelectChange}
+          bg="transparent"
+          color="gray.400"
+        >
+          {children}
+        </NativeSelectField>
+      </NativeSelectRoot>
+    </Box>
   );
 }

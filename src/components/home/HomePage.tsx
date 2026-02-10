@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import { HeroSection } from './HeroSection';
 import { WaitlistSection } from './WaitlistSection';
 import { FeaturesSection } from './FeaturesSection';
@@ -61,13 +62,13 @@ interface HomePageProps {
 
 export function HomePage({ home }: HomePageProps) {
   return (
-    <main className="min-h-screen">
+    <Box as="main" minH="100vh">
       <HeroSection {...home.hero} />
       <WaitlistSection {...home.waitlistSection} />
       <FeaturesSection {...home.features} />
       <WhySection {...home.whySection} />
       <FollowUsSection {...home.followUsSection} />
       <Footer {...home.footer} />
-    </main>
+    </Box>
   );
 }

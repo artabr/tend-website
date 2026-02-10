@@ -1,3 +1,14 @@
+import {
+  Box,
+  Card,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+
 interface Feature {
   title: string;
   description: string;
@@ -18,58 +29,115 @@ export function FeaturesSection({
   rewardSection,
 }: FeaturesSectionProps) {
   return (
-    <section className="bg-base-100 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 space-y-4 text-center sm:mb-16 lg:mb-24">
-          <h2 className="text-base-content text-3xl font-bold sm:text-4xl lg:text-5xl">
+    <Box as="section" py={{ base: 16, sm: 24, lg: 32 }}>
+      <Container maxW="container.xl" px={{ base: 4, sm: 6, lg: 8 }}>
+        <VStack mb={{ base: 12, sm: 16, lg: 24 }} gap={4} textAlign="center">
+          <Heading
+            as="h2"
+            fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+            fontWeight="bold"
+          >
             Track Your Progress
-          </h2>
-        </div>
+          </Heading>
+        </VStack>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="card hover:border-primary border-primary/30 card-border shadow-none transition-colors duration-300">
-            <div className="card-body">
-              <div className="avatar avatar-placeholder mb-4">
-                <div className="text-primary bg-primary/10 rounded-field size-14">
-                  <span className="icon-[tabler--calendar-stats] size-8"></span>
-                </div>
-              </div>
-              <h3 className="card-title text-xl">{calendarView.title}</h3>
-              <p className="text-base-content/80 whitespace-pre-line">
+        <Grid
+          templateColumns={{
+            base: '1fr',
+            sm: 'repeat(2, 1fr)',
+            lg: 'repeat(3, 1fr)',
+          }}
+          gap={8}
+        >
+          <Card.Root
+            borderWidth="1px"
+            borderColor="primary.300/30"
+            shadow="none"
+            transition="border-color 0.3s"
+            _hover={{ borderColor: 'primary.400' }}
+          >
+            <Card.Body>
+              <Flex
+                w={14}
+                h={14}
+                bg="primary.400/10"
+                color="primary.400"
+                borderRadius="lg"
+                alignItems="center"
+                justifyContent="center"
+                mb={4}
+              >
+                <Text fontSize="2xl">📅</Text>
+              </Flex>
+              <Heading as="h3" fontSize="xl" mb={2}>
+                {calendarView.title}
+              </Heading>
+              <Text color="fg.muted" whiteSpace="pre-line">
                 {calendarView.description}
-              </p>
-            </div>
-          </div>
+              </Text>
+            </Card.Body>
+          </Card.Root>
 
-          <div className="card hover:border-success border-success/30 card-border shadow-none transition-colors duration-300">
-            <div className="card-body">
-              <div className="avatar avatar-placeholder mb-4">
-                <div className="text-success bg-success/10 rounded-field size-14">
-                  <span className="icon-[tabler--chart-bar] size-8"></span>
-                </div>
-              </div>
-              <h3 className="card-title text-xl">{overviewView.title}</h3>
-              <p className="text-base-content/80 whitespace-pre-line">
+          <Card.Root
+            borderWidth="1px"
+            borderColor="green.300/30"
+            shadow="none"
+            transition="border-color 0.3s"
+            _hover={{ borderColor: 'green.400' }}
+          >
+            <Card.Body>
+              <Flex
+                w={14}
+                h={14}
+                bg="green.400/10"
+                color="green.400"
+                borderRadius="lg"
+                alignItems="center"
+                justifyContent="center"
+                mb={4}
+              >
+                <Text fontSize="2xl">📊</Text>
+              </Flex>
+              <Heading as="h3" fontSize="xl" mb={2}>
+                {overviewView.title}
+              </Heading>
+              <Text color="fg.muted" whiteSpace="pre-line">
                 {overviewView.description}
-              </p>
-            </div>
-          </div>
+              </Text>
+            </Card.Body>
+          </Card.Root>
 
-          <div className="card hover:border-warning border-warning/30 card-border shadow-none transition-colors duration-300 sm:col-span-2 lg:col-span-1">
-            <div className="card-body">
-              <div className="avatar avatar-placeholder mb-4">
-                <div className="text-warning bg-warning/10 rounded-field size-14">
-                  <span className="icon-[tabler--trophy] size-8"></span>
-                </div>
-              </div>
-              <h3 className="card-title text-xl">{rewardSection.heading}</h3>
-              <p className="text-base-content/80 whitespace-pre-line">
+          <Card.Root
+            borderWidth="1px"
+            borderColor="yellow.300/30"
+            shadow="none"
+            transition="border-color 0.3s"
+            _hover={{ borderColor: 'yellow.400' }}
+            gridColumn={{ sm: 'span 2', lg: 'span 1' }}
+          >
+            <Card.Body>
+              <Flex
+                w={14}
+                h={14}
+                bg="yellow.400/10"
+                color="yellow.400"
+                borderRadius="lg"
+                alignItems="center"
+                justifyContent="center"
+                mb={4}
+              >
+                <Text fontSize="2xl">🏆</Text>
+              </Flex>
+              <Heading as="h3" fontSize="xl" mb={2}>
+                {rewardSection.heading}
+              </Heading>
+              <Text color="fg.muted" whiteSpace="pre-line">
                 {rewardSection.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              </Text>
+            </Card.Body>
+          </Card.Root>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

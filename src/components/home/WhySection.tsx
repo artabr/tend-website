@@ -1,3 +1,14 @@
+import {
+  Box,
+  Card,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+
 interface WhyBlock {
   title: string;
   description: string;
@@ -11,38 +22,55 @@ interface WhySectionProps {
 
 export function WhySection({ title, disclaimer, blocks }: WhySectionProps) {
   return (
-    <section id="why" className="bg-base-200 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 space-y-6 text-center sm:mb-16 lg:mb-20">
-          <h2 className="text-base-content text-3xl font-bold sm:text-4xl lg:text-5xl">
+    <Box as="section" id="why" bg="bg.subtle" py={{ base: 16, sm: 24, lg: 32 }}>
+      <Container maxW="container.xl" px={{ base: 4, sm: 6, lg: 8 }}>
+        <VStack mb={{ base: 12, sm: 16, lg: 20 }} gap={6} textAlign="center">
+          <Heading
+            as="h2"
+            fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+            fontWeight="bold"
+          >
             {title}
-          </h2>
-          <p className="text-base-content/70 mx-auto max-w-3xl whitespace-pre-line text-lg">
+          </Heading>
+          <Text fontSize="lg" color="fg.muted" maxW="3xl" whiteSpace="pre-line">
             {disclaimer}
-          </p>
-        </div>
+          </Text>
+        </VStack>
 
-        <div className="grid gap-8 sm:grid-cols-2">
+        <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)' }} gap={8}>
           {blocks.map((block) => (
-            <div
+            <Card.Root
               key={block.title}
-              className="card hover:border-info border-info/30 card-border shadow-none transition-colors duration-300"
+              borderWidth="1px"
+              borderColor="blue.300/30"
+              shadow="none"
+              transition="border-color 0.3s"
+              _hover={{ borderColor: 'blue.400' }}
             >
-              <div className="card-body">
-                <div className="avatar avatar-placeholder mb-4">
-                  <div className="text-info bg-info/10 rounded-field size-14">
-                    <span className="icon-[tabler--rocket] size-8"></span>
-                  </div>
-                </div>
-                <h3 className="card-title text-xl">{block.title}</h3>
-                <p className="text-base-content/80 whitespace-pre-line">
+              <Card.Body>
+                <Flex
+                  w={14}
+                  h={14}
+                  bg="blue.400/10"
+                  color="blue.400"
+                  borderRadius="lg"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={4}
+                >
+                  <Text fontSize="2xl">🚀</Text>
+                </Flex>
+                <Heading as="h3" fontSize="xl" mb={2}>
+                  {block.title}
+                </Heading>
+                <Text color="fg.muted" whiteSpace="pre-line">
                   {block.description}
-                </p>
-              </div>
-            </div>
+                </Text>
+              </Card.Body>
+            </Card.Root>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

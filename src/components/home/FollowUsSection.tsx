@@ -1,4 +1,15 @@
-interface Button {
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+
+interface ButtonItem {
   label: string;
   url: string;
 }
@@ -6,8 +17,21 @@ interface Button {
 interface FollowUsSectionProps {
   title: string;
   description: string;
-  buttons: Button[];
+  buttons: ButtonItem[];
 }
+
+const getIcon = (label: string) => {
+  switch (label) {
+    case 'Twitter':
+      return '𝕏';
+    case 'Telegram':
+      return '✈️';
+    case 'Bluesky':
+      return '🦋';
+    default:
+      return null;
+  }
+};
 
 export function FollowUsSection({
   title,
@@ -15,40 +39,49 @@ export function FollowUsSection({
   buttons,
 }: FollowUsSectionProps) {
   return (
-    <section className="bg-base-100 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="card bg-gradient-to-br from-primary/10 to-secondary/10">
-          <div className="card-body mx-auto max-w-3xl text-center">
-            <h2 className="text-base-content mb-6 text-3xl font-bold sm:text-4xl">
-              {title}
-            </h2>
-            <p className="text-base-content/80 mb-8 text-lg">{description}</p>
+    <Box as="section" py={{ base: 16, sm: 24, lg: 32 }}>
+      <Container maxW="container.xl" px={{ base: 4, sm: 6, lg: 8 }}>
+        <Card.Root
+          bgGradient="to-br"
+          gradientFrom="primary.400/10"
+          gradientTo="purple.400/10"
+        >
+          <Card.Body>
+            <VStack maxW="3xl" mx="auto" textAlign="center" gap={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: '3xl', sm: '4xl' }}
+                fontWeight="bold"
+              >
+                {title}
+              </Heading>
+              <Text fontSize="lg" color="fg.muted">
+                {description}
+              </Text>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              {buttons.map((button) => (
-                <a
-                  key={button.label}
-                  href={button.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-lg"
-                >
-                  {button.label === 'Twitter' && (
-                    <span className="icon-[tabler--brand-x] size-5"></span>
-                  )}
-                  {button.label === 'Telegram' && (
-                    <span className="icon-[tabler--brand-telegram] size-5"></span>
-                  )}
-                  {button.label === 'Bluesky' && (
-                    <span className="icon-[tabler--brand-bluesky] size-5"></span>
-                  )}
-                  {button.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              <HStack flexWrap="wrap" justifyContent="center" gap={4}>
+                {buttons.map((button) => (
+                  <Button
+                    key={button.label}
+                    asChild
+                    size="lg"
+                    colorPalette="blue"
+                  >
+                    <a
+                      href={button.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {getIcon(button.label)}
+                      {button.label}
+                    </a>
+                  </Button>
+                ))}
+              </HStack>
+            </VStack>
+          </Card.Body>
+        </Card.Root>
+      </Container>
+    </Box>
   );
 }

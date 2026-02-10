@@ -1,3 +1,13 @@
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Link,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+
 interface HeroSectionProps {
   headline: string;
   subHeadline: string;
@@ -14,63 +24,96 @@ export function HeroSection({
   disclaimer,
 }: HeroSectionProps) {
   return (
-    <section className="hero min-h-screen bg-base-100">
-      <div className="hero-content flex-col gap-8 pt-24">
-        <div className="flex max-w-5xl flex-col items-center gap-8 text-center">
-          <h1 className="text-base-content relative z-1 text-5xl font-bold leading-[1.15] max-md:text-3xl md:text-balance">
-            <span>{headline}</span>
-            <svg
-              width="223"
-              height="12"
-              viewBox="0 0 223 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute -bottom-1.5 left-10 -z-1 max-md:hidden max-lg:left-4"
+    <Box
+      as="section"
+      minH="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Container maxW="container.xl" pt={24}>
+        <VStack gap={8} textAlign="center" maxW="5xl" mx="auto">
+          <Box position="relative">
+            <Heading
+              as="h1"
+              fontSize={{ base: '3xl', md: '5xl' }}
+              fontWeight="bold"
+              lineHeight={1.15}
             >
-              <path
-                d="M1.30466 10.7431C39.971 5.28788 76.0949 3.02 115.082 2.30401C143.893 1.77489 175.871 0.628649 204.399 3.63102C210.113 3.92052 215.332 4.91391 221.722 6.06058"
-                stroke="url(#paint0_linear_hero)"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_hero"
-                  x1="19.0416"
-                  y1="4.03539"
-                  x2="42.8362"
-                  y2="66.9459"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0.2" stopColor="var(--color-primary)" />
-                  <stop offset="1" stopColor="var(--color-primary-content)" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </h1>
+              {headline}
+            </Heading>
+            <Box
+              position="absolute"
+              bottom="-6px"
+              left={{ base: 4, lg: 10 }}
+              zIndex={-1}
+              display={{ base: 'none', md: 'block' }}
+            >
+              <svg
+                width="223"
+                height="12"
+                viewBox="0 0 223 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.30466 10.7431C39.971 5.28788 76.0949 3.02 115.082 2.30401C143.893 1.77489 175.871 0.628649 204.399 3.63102C210.113 3.92052 215.332 4.91391 221.722 6.06058"
+                  stroke="url(#paint0_linear_hero)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_hero"
+                    x1="19.0416"
+                    y1="4.03539"
+                    x2="42.8362"
+                    y2="66.9459"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0.2" stopColor="#5fc3e7" />
+                    <stop offset="1" stopColor="#47b9e3" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </Box>
+          </Box>
 
-          <p className="text-base-content/80 max-w-3xl text-xl">
+          <Text fontSize="xl" color="fg.muted" maxW="3xl">
             {subHeadline}
-          </p>
+          </Text>
 
-          <div className="flex flex-col items-center gap-4">
-            <a href="#waitlist" className="btn btn-primary btn-gradient btn-lg">
-              {callToAction}
-              <span className="icon-[tabler--arrow-down] size-5"></span>
-            </a>
-            <a
+          <VStack gap={4}>
+            <Button
+              asChild
+              size="lg"
+              colorPalette="blue"
+              bgGradient="to-r"
+              gradientFrom="primary.400"
+              gradientTo="primary.600"
+              _hover={{ opacity: 0.9 }}
+            >
+              <a href="#waitlist">
+                {callToAction}
+                <span>↓</span>
+              </a>
+            </Button>
+            <Link
               href="#why"
-              className="link link-primary link-animated text-lg font-medium"
+              fontSize="lg"
+              fontWeight="medium"
+              color="primary.400"
+              _hover={{ textDecoration: 'underline' }}
             >
               {whyLink}
-            </a>
-          </div>
+            </Link>
+          </VStack>
 
-          <p className="text-base-content/60 mt-4 max-w-2xl text-sm">
+          <Text fontSize="sm" color="fg.subtle" maxW="2xl" mt={4}>
             {disclaimer}
-          </p>
-        </div>
-      </div>
-    </section>
+          </Text>
+        </VStack>
+      </Container>
+    </Box>
   );
 }

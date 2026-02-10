@@ -1,7 +1,7 @@
-import '@/styles/globals.css';
 import EnvScript from '@/components/common/EnvScript';
 import { Scripts } from '@/components/common/Scripts';
 import PageLayout from '@/components/ui/PageLayout';
+import { Provider } from '@/components/ui/provider';
 import { routing } from '@/i18n/routing';
 import { type Locale, NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -46,12 +46,14 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <EnvScript />
       <body>
-        <NextIntlClientProvider>
-          <PageLayout>{children}</PageLayout>
-        </NextIntlClientProvider>
+        <Provider>
+          <NextIntlClientProvider>
+            <PageLayout>{children}</PageLayout>
+          </NextIntlClientProvider>
+        </Provider>
         <Scripts />
       </body>
     </html>
