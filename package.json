@@ -11,9 +11,11 @@
     "patch-render-strategy": "bun run scripts/patch-render-strategy.ts"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.32.0",
     "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@floating-ui/react": "^0.27.17",
+    "@mui/material": "^7.3.7",
+    "@mui/system": "^7.3.7",
     "@tiptap/pm": "^3.19.0",
     "@tiptap/react": "^3.19.0",
     "contentlayer": "^0.3.4",

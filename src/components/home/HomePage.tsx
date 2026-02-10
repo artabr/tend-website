@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import Box from '@mui/material/Box';
 import { HeroSection } from './HeroSection';
 import { WaitlistSection } from './WaitlistSection';
 import { FeaturesSection } from './FeaturesSection';
@@ -62,7 +62,7 @@ interface HomePageProps {
 
 export function HomePage({ home }: HomePageProps) {
   return (
-    <Box as="main" minH="100vh">
+    <Box component="main" sx={{ minHeight: '100vh' }}>
       <HeroSection {...home.hero} />
       <WaitlistSection {...home.waitlistSection} />
       <FeaturesSection {...home.features} />

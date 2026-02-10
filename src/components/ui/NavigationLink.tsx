@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import { Box } from '@chakra-ui/react';
+import Box from '@mui/material/Box';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { ComponentProps } from 'react';
 
@@ -15,19 +15,19 @@ export default function NavigationLink({
 
   return (
     <Box
-      asChild
-      display="inline-block"
-      px={2}
-      py={3}
-      transition="colors 0.2s"
-      color={isActive ? 'white' : 'gray.400'}
-      _hover={{ color: 'gray.200' }}
-    >
-      <Link
-        aria-current={isActive ? 'page' : undefined}
-        href={href}
-        {...rest}
-      />
-    </Box>
+      component={Link}
+      href={href}
+      aria-current={isActive ? 'page' : undefined}
+      sx={{
+        display: 'inline-block',
+        px: 1,
+        py: 1.5,
+        transition: 'color 0.2s',
+        color: isActive ? 'white' : 'grey.400',
+        textDecoration: 'none',
+        '&:hover': { color: 'grey.200' },
+      }}
+      {...rest}
+    />
   );
 }

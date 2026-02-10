@@ -1,11 +1,8 @@
 'use client';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { Box, Text } from '@chakra-ui/react';
-import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from '@/components/ui/native-select';
+import Box from '@mui/material/Box';
+import NativeSelect from '@mui/material/NativeSelect';
 import type { Locale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { type ChangeEvent, type ReactNode, useTransition } from 'react';
@@ -41,22 +38,36 @@ export default function LocaleSwitcherSelect({
 
   return (
     <Box
-      position="relative"
-      color="gray.400"
-      opacity={isPending ? 0.3 : 1}
-      transition="opacity 0.2s"
+      sx={{
+        position: 'relative',
+        color: 'grey.400',
+        opacity: isPending ? 0.3 : 1,
+        transition: 'opacity 0.2s',
+      }}
     >
-      <Text srOnly>{label}</Text>
-      <NativeSelectRoot size="sm" variant="plain" disabled={isPending}>
-        <NativeSelectField
-          defaultValue={defaultValue}
-          onChange={onSelectChange}
-          bg="transparent"
-          color="gray.400"
-        >
-          {children}
-        </NativeSelectField>
-      </NativeSelectRoot>
+      <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+        {label}
+      </Box>
+      <NativeSelect
+        defaultValue={defaultValue}
+        onChange={onSelectChange}
+        disabled={isPending}
+        disableUnderline
+        sx={{
+          color: 'grey.400',
+          fontSize: '0.875rem',
+          '& select': {
+            bgcolor: 'transparent',
+            py: 0.5,
+            pr: 3,
+          },
+          '& .MuiNativeSelect-icon': {
+            color: 'grey.400',
+          },
+        }}
+      >
+        {children}
+      </NativeSelect>
     </Box>
   );
 }

@@ -1,6 +1,9 @@
 'use client';
 
-import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 interface WaitlistSectionProps {
   title: string;
@@ -16,28 +19,42 @@ export function WaitlistSection({
   actionButton,
 }: WaitlistSectionProps) {
   return (
-    <Box as="section" id="waitlist" bg="gray.100" py={{ base: 12, md: 16 }}>
-      <Container maxW="container.md">
-        <VStack gap={4} textAlign="center">
-          <Heading
-            as="h2"
-            fontSize={{ base: 'xl', md: '2xl' }}
-            fontWeight="semibold"
+    <Box
+      component="section"
+      id="waitlist"
+      sx={{ bgcolor: 'grey.100', py: { xs: 6, md: 8 } }}
+    >
+      <Container maxWidth="md">
+        <Stack spacing={2} alignItems="center" textAlign="center">
+          <Typography
+            component="h2"
+            sx={{
+              fontSize: { xs: '1.25rem', md: '1.5rem' },
+              fontWeight: 600,
+            }}
           >
             {title}
-          </Heading>
-          <Text fontSize="sm" color="fg.muted" maxW="lg">
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: '0.875rem',
+              color: 'text.secondary',
+              maxWidth: '32rem',
+            }}
+          >
             {description}
-          </Text>
+          </Typography>
 
-          <Box w="full" maxW="400px" mt={4}>
+          <Box sx={{ width: '100%', maxWidth: '400px', mt: 2 }}>
             <Box id="brevo-form-container" className="brevo-form" />
           </Box>
 
-          <Text fontSize="xs" color="fg.subtle" mt={2}>
+          <Typography
+            sx={{ fontSize: '0.75rem', color: 'text.disabled', mt: 1 }}
+          >
             {disclaimer}
-          </Text>
-        </VStack>
+          </Typography>
+        </Stack>
       </Container>
     </Box>
   );

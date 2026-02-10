@@ -1,66 +1,74 @@
-"use client"
+'use client';
 
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createTheme } from '@mui/material/styles';
 
-const config = defineConfig({
-  theme: {
-    tokens: {
-      fonts: {
-        heading: { value: "Inter, sans-serif" },
-        body: { value: "Inter, sans-serif" },
-      },
-      colors: {
-        primary: {
-          50: { value: "#e8f7fc" },
-          100: { value: "#c5ebf7" },
-          200: { value: "#9edcf1" },
-          300: { value: "#77cdeb" },
-          400: { value: "#5fc3e7" },
-          500: { value: "#47b9e3" },
-          600: { value: "#3fa8cf" },
-          700: { value: "#3592b5" },
-          800: { value: "#2c7c9b" },
-          900: { value: "#1f5a70" },
-          950: { value: "#153d4d" },
-        },
-        slate: {
-          850: { value: "hsl(222deg 47% 16%)" },
-        },
-      },
+declare module '@mui/material/styles' {
+  interface Palette {
+    slate: {
+      850: string;
+    };
+  }
+  interface PaletteOptions {
+    slate?: {
+      850?: string;
+    };
+  }
+}
+
+export const theme = createTheme({
+  typography: {
+    fontFamily: 'Inter, sans-serif',
+  },
+  palette: {
+    primary: {
+      50: '#e8f7fc',
+      100: '#c5ebf7',
+      200: '#9edcf1',
+      300: '#77cdeb',
+      400: '#5fc3e7',
+      500: '#47b9e3',
+      600: '#3fa8cf',
+      700: '#3592b5',
+      800: '#2c7c9b',
+      900: '#1f5a70',
+      main: '#47b9e3',
+      light: '#5fc3e7',
+      dark: '#3592b5',
+      contrastText: '#fff',
     },
-    semanticTokens: {
-      colors: {
-        bg: {
-          DEFAULT: {
-            value: { _light: "{colors.white}", _dark: "{colors.gray.900}" },
-          },
-          subtle: {
-            value: { _light: "{colors.gray.50}", _dark: "{colors.gray.800}" },
-          },
-          muted: {
-            value: { _light: "{colors.gray.100}", _dark: "{colors.gray.700}" },
-          },
-        },
-        fg: {
-          DEFAULT: {
-            value: { _light: "{colors.gray.900}", _dark: "{colors.gray.100}" },
-          },
-          muted: {
-            value: { _light: "{colors.gray.600}", _dark: "{colors.gray.400}" },
-          },
-          subtle: {
-            value: { _light: "{colors.gray.400}", _dark: "{colors.gray.500}" },
-          },
+    slate: {
+      850: 'hsl(222deg 47% 16%)',
+    },
+    grey: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+    },
+    text: {
+      primary: '#212121',
+      secondary: '#757575',
+      disabled: '#bdbdbd',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#ffffff',
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        'html, body': {
+          backgroundColor: '#ffffff',
+          color: '#212121',
         },
       },
     },
   },
-  globalCss: {
-    "html, body": {
-      bg: "bg",
-      color: "fg",
-    },
-  },
-})
-
-export const system = createSystem(defaultConfig, config)
+});

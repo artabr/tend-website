@@ -1,12 +1,7 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 interface Feature {
   title: string;
@@ -38,29 +33,53 @@ function FeatureRow({
   reverse = false,
 }: FeatureRowProps) {
   return (
-    <Flex
-      direction={{ base: 'column', md: reverse ? 'row-reverse' : 'row' }}
-      alignItems="center"
-      gap={{ base: 8, md: 12 }}
-      py={{ base: 12, md: 16 }}
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: {
+          xs: 'column',
+          md: reverse ? 'row-reverse' : 'row',
+        },
+        alignItems: 'center',
+        gap: { xs: 4, md: 6 },
+        py: { xs: 6, md: 8 },
+      }}
     >
-      <VStack
-        flex={1}
-        alignItems={{ base: 'center', md: reverse ? 'flex-end' : 'flex-start' }}
-        textAlign={{ base: 'center', md: reverse ? 'right' : 'left' }}
-        gap={3}
+      <Stack
+        sx={{
+          flex: 1,
+          alignItems: {
+            xs: 'center',
+            md: reverse ? 'flex-end' : 'flex-start',
+          },
+          textAlign: { xs: 'center', md: reverse ? 'right' : 'left' },
+        }}
+        spacing={1.5}
       >
-        <Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} fontWeight="bold">
+        <Typography
+          component="h3"
+          sx={{
+            fontSize: { xs: '1.125rem', md: '1.25rem' },
+            fontWeight: 'bold',
+          }}
+        >
           {title}
-        </Heading>
-        <Text fontSize="sm" color="fg.muted" maxW="sm">
+        </Typography>
+        <Typography
+          sx={{ fontSize: '0.875rem', color: 'text.secondary', maxWidth: 'sm' }}
+        >
           {description}
-        </Text>
-      </VStack>
-      <Box flex={1} maxW={{ base: '240px', md: '280px' }}>
-        <Image src={imageSrc} alt={imageAlt} w="full" h="auto" />
+        </Typography>
+      </Stack>
+      <Box sx={{ flex: 1, maxWidth: { xs: '240px', md: '280px' } }}>
+        <Box
+          component="img"
+          src={imageSrc}
+          alt={imageAlt}
+          sx={{ width: '100%', height: 'auto' }}
+        />
       </Box>
-    </Flex>
+    </Box>
   );
 }
 
@@ -70,8 +89,8 @@ export function FeaturesSection({
   rewardSection,
 }: FeaturesSectionProps) {
   return (
-    <Box as="section" py={{ base: 8, md: 12 }}>
-      <Container maxW="container.lg">
+    <Box component="section" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="lg">
         {/* Feature 1: Calendar View - Text Left, Image Right */}
         <FeatureRow
           title={calendarView.title}

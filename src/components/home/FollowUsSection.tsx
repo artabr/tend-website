@@ -1,13 +1,8 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 interface ButtonItem {
   label: string;
@@ -51,66 +46,80 @@ export function FollowUsSection({
   buttons,
 }: FollowUsSectionProps) {
   return (
-    <Box as="section" py={{ base: 12, md: 16 }}>
-      <Container maxW="container.lg">
+    <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
+      <Container maxWidth="lg">
         <Box
-          bg="slate.850"
-          borderRadius="2xl"
-          p={{ base: 8, md: 12 }}
-          position="relative"
-          overflow="hidden"
+          sx={{
+            bgcolor: 'slate.850',
+            borderRadius: 4,
+            p: { xs: 4, md: 6 },
+            position: 'relative',
+            overflow: 'hidden',
+          }}
         >
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            alignItems="center"
-            justifyContent="space-between"
-            gap={8}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 4,
+            }}
           >
-            <VStack
-              alignItems={{ base: 'center', md: 'flex-start' }}
-              gap={4}
-              flex={1}
+            <Stack
+              sx={{
+                alignItems: { xs: 'center', md: 'flex-start' },
+                flex: 1,
+              }}
+              spacing={2}
             >
-              <Heading
-                as="h2"
-                fontSize={{ base: 'xl', md: '2xl' }}
-                fontWeight="bold"
-                color="white"
-                lineHeight={1.3}
+              <Typography
+                component="h2"
+                sx={{
+                  fontSize: { xs: '1.25rem', md: '1.5rem' },
+                  fontWeight: 'bold',
+                  color: 'white',
+                  lineHeight: 1.3,
+                }}
               >
                 {title}
-              </Heading>
-              <Text fontSize="sm" color="gray.400" maxW="sm">
+              </Typography>
+              <Typography
+                sx={{ fontSize: '0.875rem', color: 'grey.400', maxWidth: 'sm' }}
+              >
                 {description}
-              </Text>
+              </Typography>
 
-              <HStack flexWrap="wrap" gap={3} mt={2}>
+              <Stack
+                direction="row"
+                flexWrap="wrap"
+                spacing={1.5}
+                sx={{ mt: 1 }}
+              >
                 {buttons.map((button) => (
                   <Button
                     key={button.label}
-                    asChild
-                    size="sm"
-                    variant="outline"
-                    borderColor="gray.600"
-                    color="white"
-                    _hover={{ bg: 'gray.700' }}
+                    href={button.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="small"
+                    variant="outlined"
+                    sx={{
+                      borderColor: 'grey.600',
+                      color: 'white',
+                      '&:hover': { bgcolor: 'grey.700' },
+                    }}
                   >
-                    <a
-                      href={button.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {getIcon(button.label)} {button.label}
-                    </a>
+                    {getIcon(button.label)} {button.label}
                   </Button>
                 ))}
-              </HStack>
-            </VStack>
+              </Stack>
+            </Stack>
 
-            <Box color="blue.400" opacity={0.8}>
+            <Box sx={{ color: '#42a5f5', opacity: 0.8 }}>
               <TelegramIcon />
             </Box>
-          </Flex>
+          </Box>
         </Box>
       </Container>
     </Box>

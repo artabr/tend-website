@@ -1,4 +1,7 @@
-import { Box, Container, Flex, HStack, Text } from '@chakra-ui/react';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { useTranslations } from 'next-intl';
 import LocaleSwitcher from './LocaleSwitcher';
 import NavigationLink from './NavigationLink';
@@ -7,27 +10,49 @@ export default function Navigation() {
   const t = useTranslations('Navigation');
 
   return (
-    <Box bg="slate.850" position="sticky" top={0} zIndex={100}>
-      <Container maxW="container.lg">
-        <Flex h="12" alignItems="center" justifyContent="space-between">
-          <HStack gap={6}>
-            <HStack gap={1}>
-              <Text fontSize="md" fontWeight="bold" color="primary.400">
+    <Box
+      sx={{
+        bgcolor: 'slate.850',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: 'flex',
+            height: 48,
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Stack direction="row" spacing={3} alignItems="center">
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <Typography
+                sx={{
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  color: 'primary.light',
+                }}
+              >
                 T
-              </Text>
-              <Text fontSize="sm" fontWeight="medium" color="white">
+              </Typography>
+              <Typography
+                sx={{ fontSize: '0.875rem', fontWeight: 500, color: 'white' }}
+              >
                 Tend
-              </Text>
-            </HStack>
-            <HStack gap={4}>
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={2}>
               <NavigationLink href="/">{t('home')}</NavigationLink>
               <NavigationLink href="https://docs.tend-app.pro/en">
                 {t('docs')}
               </NavigationLink>
-            </HStack>
-          </HStack>
+            </Stack>
+          </Stack>
           <LocaleSwitcher />
-        </Flex>
+        </Box>
       </Container>
     </Box>
   );
