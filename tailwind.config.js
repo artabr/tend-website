@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{tsx,css}'],
+export default {
+  content: [
+    './src/**/*.{tsx,css}'
+  ],
   theme: {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
@@ -30,5 +32,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui')
+  ],
 };

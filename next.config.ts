@@ -1,4 +1,3 @@
-import BuilderDevTools from '@builder.io/dev-tools/next';
 import type { NextConfig } from 'next';
 import { withContentlayer } from 'next-contentlayer';
 import createNextIntlPlugin from 'next-intl/plugin';
@@ -9,8 +8,8 @@ const withNextIntl = createNextIntlPlugin({
   },
 });
 
-const nextConfig: NextConfig = BuilderDevTools()({
+const nextConfig: NextConfig = {
   serverExternalPackages: ['isolated-vm'],
-} satisfies NextConfig);
+} satisfies NextConfig;
 
 export default withContentlayer(withNextIntl(nextConfig));

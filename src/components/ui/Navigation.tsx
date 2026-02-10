@@ -6,16 +6,16 @@ export default function Navigation() {
   const t = useTranslations('Navigation');
 
   return (
-    <div className="bg-slate-850">
-      <nav className="container flex justify-between p-2 text-white">
-        <div>
-          <NavigationLink href="/">{t('home')}</NavigationLink>
-          <NavigationLink href="https://docs.tend-app.pro/en">
-            {t('docs')}
-          </NavigationLink>
-        </div>
+    <div className="navbar bg-slate-850 container">
+      <div className="navbar-start">
+        <NavigationLink href="/">{t('home')}</NavigationLink>
+        <NavigationLink href="https://docs.tend-app.pro/en">
+          {t('docs')}
+        </NavigationLink>
+      </div>
+      <div className="navbar-end">
         <LocaleSwitcher />
-      </nav>
+      </div>
     </div>
   );
 }

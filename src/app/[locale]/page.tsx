@@ -1,11 +1,11 @@
-import { BuilderPageComponent } from '@/components/builder/BuilderPageComponent';
-import { getBuilderTemplate } from '@/content/getBuilderTemplate';
+import { HomePage } from '@/components/home/HomePage';
+import { getHomeContent } from '@/content/getHomeContent';
 import { generatePageMetadata } from '@/lib/metadata';
 import type { Locale } from 'next-intl';
-import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
-  params: Promise<{ locale: Locale; pages: string[] }>;
+  params: Promise<{ locale: Locale }>;
 };
 
 export const dynamic = 'force-static';
@@ -15,30 +15,17 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { locale, pages } = await params;
-  const slug = `${pages?.join('/') || 'index'}`;
+  const { locale } = await params;
+  const slug = 'index';
 
   return generatePageMetadata(slug, locale);
 }
 
 export default async function Page({ params }: Props) {
-  await import('isolated-vm');
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-  const { locale, pages } = await params;
+  const homeContent = await getHomeContent();
 
-  const builderModelName = 'page';
-  const slug = `${pages?.join('/') || 'index'}`;
-
-  const builderTemplate = getBuilderTemplate(slug, locale);
-
-  if (!builderTemplate) {
-    return notFound();
-  }
-
-  return (
-    <BuilderPageComponent
-      builderModelName={builderModelName}
-      builderTemplate={builderTemplate}
-    />
-  );
+  return <HomePage {...homeContent} />;
 }

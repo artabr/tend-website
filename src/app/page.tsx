@@ -1,15 +1,14 @@
-import { BuilderPageComponent } from '@/components/builder/BuilderPageComponent';
 import EnvScript from '@/components/common/EnvScript';
 import { Scripts } from '@/components/common/Scripts';
+import { HomePage } from '@/components/home/HomePage';
 import PageLayout from '@/components/ui/PageLayout';
-import { getBuilderTemplate } from '@/content/getBuilderTemplate';
+import { getHomeContent } from '@/content/getHomeContent';
 import { generatePageMetadata } from '@/lib/metadata';
 import { type Locale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 
 type Props = {
-  params: Promise<{ locale: Locale; pages: string[] }>;
+  params: Promise<{ locale: Locale }>;
 };
 
 export const dynamic = 'force-static';
@@ -19,27 +18,17 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata() {
-  const locale = 'ru';
+  const locale = 'en';
   const slug = 'index';
 
   return generatePageMetadata(slug, locale);
 }
 
 export default async function Page({ params }: Props) {
-  await import('isolated-vm');
-
-  const locale = 'ru';
-  const slug = 'index';
-
-  const builderModelName = 'page';
-
-  const builderTemplate = getBuilderTemplate(slug, locale);
-
-  if (!builderTemplate) {
-    return notFound();
-  }
-
+  const locale = 'en';
   setRequestLocale(locale);
+
+  const homeContent = await getHomeContent();
 
   return (
     <html lang={locale}>
@@ -47,10 +36,7 @@ export default async function Page({ params }: Props) {
       <body>
         <NextIntlClientProvider>
           <PageLayout>
-            <BuilderPageComponent
-              builderModelName={builderModelName}
-              builderTemplate={builderTemplate}
-            />
+            <HomePage {...homeContent} />
           </PageLayout>
         </NextIntlClientProvider>
         <Scripts />

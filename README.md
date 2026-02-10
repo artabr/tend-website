@@ -1,14 +1,14 @@
 # Tend Habit tracker Website
 
-This project is a Next.js application that combines Builder.io for page structure and components with Directus CMS for content management. It implements a hybrid approach where page layouts and components are managed through Builder.io, while the actual content data is fetched from Directus CMS based on the current locale and route.
+This project is a Next.js application that uses Contentlayer for content management and FlyonUI for UI components. Content is managed in Markdown files and rendered using modern React components with Tailwind CSS styling.
 
 ## Technologies Used
 
-- [Next.js](https://nextjs.org) v15.3.2 - React framework for production
-- [Builder.io](https://www.builder.io) - Visual development platform for page structure and components
-- [Directus CMS](https://directus.io) - Headless CMS for content management
+- [Next.js](https://nextjs.org) v15.5.9 - React framework for production
+- [Contentlayer](https://contentlayer.dev) - Content SDK for managing Markdown content
+- [FlyonUI](https://flyonui.com) - Modern UI component library built on Tailwind CSS
 - TypeScript v5 - For type-safe development
-- Tailwind CSS v3.4.4 - For styling of the UI elements that are not managed by Builder.io (a subject to change)
+- Tailwind CSS v3.4.4 - For styling
 
 ## Development Tools
 
@@ -32,31 +32,23 @@ This project is a Next.js application that combines Builder.io for page structur
 
 ## Architecture
 
-The application follows a hybrid architecture:
+The application follows a modern, file-based content architecture:
 
-1. Page structure and component layouts are managed through Builder.io
-2. Content data is fetched from Directus CMS based on:
-   - Current locale
-   - Current route
-3. The BuilderComponent receives both the structure from Builder.io and the content from Directus CMS to render the complete page
+1. Content is managed in Markdown files in the `content/` directory
+2. Contentlayer processes Markdown files and generates TypeScript types
+3. Content is fetched directly in React Server Components based on locale
+4. UI is built with FlyonUI components styled with Tailwind CSS
 
 ## Development
 
 ### Prerequisites
 
 - Node.js 22+ installed
-- Access to Builder.io dashboard
-- Access to Directus CMS dashboard
 - Bun 1.0.0+ installed
 
 ### Environment Setup
 
-Create a `.env.local` file in the root directory with the following variables:
-
-```env
-# Builder.io
-NEXT_PUBLIC_BUILDER_API_KEY=your_builder_api_key
-```
+No environment variables are required for local development. Content is managed directly in Markdown files.
 
 ### Running Development Build
 
@@ -84,17 +76,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - GitHub's commit checks section
   - GitHub's Deployments section
 
-## Useful Links
-
-- [Builder.io Dashboard](https://builder.io/content)
-- [Directus CMS Dashboard](https://directus.tend-app.ru/admin)
-
 ## Learn More
 
 To learn more about the technologies used in this project:
 
 - [Next.js Documentation](https://nextjs.org/docs)
-- [Builder.io Documentation](https://www.builder.io/c/docs/developers)
-- [Directus Documentation](https://docs.directus.io)
+- [Contentlayer Documentation](https://contentlayer.dev/docs)
+- [FlyonUI Documentation](https://flyonui.com/docs)
 - [Biome Documentation](https://biomejs.dev/docs)
 - [Bun Documentation](https://bun.sh/docs)
