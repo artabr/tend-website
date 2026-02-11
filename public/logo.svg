@@ -7,11 +7,7 @@
    id="svg30"
    xml:space="preserve"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><!-- Background Color --><rect
-     width="100%"
-     height="100%"
-     fill="#ffffff"
-     id="rect1" /><!-- Define Rounded Square Backgrounds --><defs
+   xmlns:svg="http://www.w3.org/2000/svg"><!-- Background Color --><!-- Define Rounded Square Backgrounds --><defs
      id="defs8"><rect
        id="tile-lg"
        width="140"
