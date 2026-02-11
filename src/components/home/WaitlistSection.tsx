@@ -26,21 +26,13 @@ export function WaitlistSection({
     >
       <Container maxWidth="md">
         <Stack spacing={2} alignItems="center" textAlign="center">
-          <Typography
-            component="h2"
-            sx={{
-              fontSize: { xs: '1.25rem', md: '1.5rem' },
-              fontWeight: 600,
-            }}
-          >
+          <Typography variant="h2" component="h2">
             {title}
           </Typography>
           <Typography
-            sx={{
-              fontSize: '0.875rem',
-              color: 'text.secondary',
-              maxWidth: '32rem',
-            }}
+            variant="body1"
+            color="text.secondary"
+            sx={{ maxWidth: '32rem' }}
           >
             {description}
           </Typography>
@@ -49,9 +41,7 @@ export function WaitlistSection({
             <Box id="brevo-form-container" className="brevo-form" />
           </Box>
 
-          <Typography
-            sx={{ fontSize: '0.75rem', color: 'text.disabled', mt: 1 }}
-          >
+          <Typography variant="caption" color="text.disabled" sx={{ mt: 1 }}>
             {disclaimer}
           </Typography>
         </Stack>

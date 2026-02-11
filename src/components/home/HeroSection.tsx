@@ -49,25 +49,12 @@ export function HeroSection({
           </Box>
 
           {/* Headline */}
-          <Typography
-            component="h1"
-            sx={{
-              fontSize: { xs: '1.5rem', md: '2.125rem', lg: '3rem' },
-              fontWeight: 'bold',
-              lineHeight: 1.2,
-              maxWidth: '600px',
-            }}
-          >
+          <Typography variant="h1" component="h1" sx={{ maxWidth: '600px' }}>
             {headline}
           </Typography>
 
           {/* Subheadline with Why link */}
-          <Typography
-            sx={{
-              fontSize: { xs: '1rem', md: '1.125rem' },
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="subtitle1" color="text.secondary">
             {subHeadline}{' '}
             <Link
               href="#why"
@@ -108,7 +95,7 @@ export function HeroSection({
           >
             <Box
               component="img"
-              src="/images/Main hero image.png"
+              src="/images/main_hero_image.png"
               alt="Tend app habit tracker interface"
               sx={{ width: '100%', height: 'auto' }}
             />

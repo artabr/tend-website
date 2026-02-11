@@ -56,17 +56,13 @@ function FeatureRow({
         }}
         spacing={1.5}
       >
-        <Typography
-          component="h3"
-          sx={{
-            fontSize: { xs: '1.125rem', md: '1.25rem' },
-            fontWeight: 'bold',
-          }}
-        >
+        <Typography variant="h3" component="h3">
           {title}
         </Typography>
         <Typography
-          sx={{ fontSize: '0.875rem', color: 'text.secondary', maxWidth: 'sm' }}
+          variant="body1"
+          color="text.secondary"
+          sx={{ maxWidth: 'sm' }}
         >
           {description}
         </Typography>
@@ -95,7 +91,7 @@ export function FeaturesSection({
         <FeatureRow
           title={calendarView.title}
           description={calendarView.description}
-          imageSrc="/images/Detailed calendar feature.png"
+          imageSrc="/images/detailed_calendar_feature.png"
           imageAlt="Calendar view showing habit tracking progress"
         />
 
@@ -103,7 +99,7 @@ export function FeaturesSection({
         <FeatureRow
           title={overviewView.title}
           description={overviewView.description}
-          imageSrc="/images/Detailed statistics feature.png"
+          imageSrc="/images/detailed_statistics_feature.png"
           imageAlt="Statistics view showing habit progress across multiple habits"
           reverse
         />
@@ -112,7 +108,7 @@ export function FeaturesSection({
         <FeatureRow
           title={rewardSection.heading}
           description={rewardSection.description}
-          imageSrc="/images/Achievements feature.png"
+          imageSrc="/images/achievements_feature.png"
           imageAlt="Achievements and rewards for completing habits"
         />
       </Container>

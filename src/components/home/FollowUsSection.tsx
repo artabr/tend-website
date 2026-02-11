@@ -73,19 +73,12 @@ export function FollowUsSection({
               }}
               spacing={2}
             >
-              <Typography
-                component="h2"
-                sx={{
-                  fontSize: { xs: '1.25rem', md: '1.5rem' },
-                  fontWeight: 'bold',
-                  color: 'white',
-                  lineHeight: 1.3,
-                }}
-              >
+              <Typography variant="h2" component="h2" sx={{ color: 'white' }}>
                 {title}
               </Typography>
               <Typography
-                sx={{ fontSize: '0.875rem', color: 'grey.400', maxWidth: 'sm' }}
+                variant="body1"
+                sx={{ color: 'grey.400', maxWidth: 'sm' }}
               >
                 {description}
               </Typography>
