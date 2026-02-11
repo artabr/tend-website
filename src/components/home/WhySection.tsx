@@ -17,12 +17,23 @@ interface WhySectionProps {
 
 export function WhySection({ title, disclaimer, blocks }: WhySectionProps) {
   return (
-    <Box component="section" id="why" sx={{ py: { xs: 6, md: 8 } }}>
+    <Box
+      component="section"
+      id="why"
+      sx={{
+        py: { xs: 6, md: 12.5 },
+        px: { xs: 6, md: 10 },
+        bgcolor: '#fbfcff',
+      }}
+    >
       <Container maxWidth="lg">
         <Typography
           variant="h2"
           component="h2"
-          sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}
+          sx={{
+            textAlign: 'center',
+            mb: { xs: 4, md: 6 },
+          }}
         >
           {title}
         </Typography>
@@ -34,7 +45,14 @@ export function WhySection({ title, disclaimer, blocks }: WhySectionProps) {
                 <Typography variant="h4" component="h3">
                   {block.title}
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: '18px',
+                    lineHeight: '32px',
+                    color: '#000000',
+                  }}
+                >
                   {block.description}
                 </Typography>
               </Stack>
@@ -45,13 +63,14 @@ export function WhySection({ title, disclaimer, blocks }: WhySectionProps) {
         {disclaimer && (
           <Typography
             variant="caption"
-            color="text.disabled"
             sx={{
               textAlign: 'center',
               mt: 4,
               maxWidth: '42rem',
               mx: 'auto',
               display: 'block',
+              fontSize: '18px',
+              color: '#000000',
             }}
           >
             {disclaimer}

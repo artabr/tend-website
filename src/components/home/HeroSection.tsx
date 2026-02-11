@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import NextImage from 'next/image';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 interface HeroSectionProps {
   headline: string;
@@ -26,7 +27,7 @@ export function HeroSection({
       sx={{ pt: { xs: 4, md: 8 }, pb: { xs: 6, md: 10 } }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={3} alignItems="center" textAlign="center">
+        <Stack spacing={4} alignItems="center" textAlign="center">
           {/* Logo */}
           <Box
             sx={{
@@ -37,15 +38,13 @@ export function HeroSection({
               justifyContent: 'center',
             }}
           >
-            <Typography
-              sx={{
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                color: 'primary.main',
-              }}
-            >
-              T
-            </Typography>
+            <NextImage
+              src="/logo.svg"
+              alt="Tend logo"
+              width={40}
+              height={40}
+              style={{ display: 'block' }}
+            />
           </Box>
 
           {/* Headline */}
@@ -54,7 +53,10 @@ export function HeroSection({
           </Typography>
 
           {/* Subheadline with Why link */}
-          <Typography variant="subtitle1" color="text.secondary">
+          <Typography
+            variant="subtitle1"
+            sx={{ color: '#333333', fontSize: '28px', lineHeight: '24px' }}
+          >
             {subHeadline}{' '}
             <Link
               href="#why"
@@ -75,11 +77,15 @@ export function HeroSection({
             variant="contained"
             size="large"
             sx={{
-              bgcolor: 'slate.850',
+              bgcolor: '#a71677',
               color: 'white',
               px: 4,
-              borderRadius: '9999px',
-              '&:hover': { bgcolor: 'grey.700' },
+              borderRadius: '10px',
+              fontSize: '16px',
+              lineHeight: '24px',
+              fontWeight: 400,
+              height: '54px',
+              '&:hover': { bgcolor: '#8a1262' },
             }}
           >
             {callToAction}
@@ -89,7 +95,7 @@ export function HeroSection({
           <Box
             sx={{
               mt: 4,
-              maxWidth: { xs: '280px', md: '360px' },
+              maxWidth: { xs: '280px', md: '460px' },
               mx: 'auto',
             }}
           >
@@ -97,7 +103,7 @@ export function HeroSection({
               component="img"
               src="/images/main_hero_image.png"
               alt="Tend app habit tracker interface"
-              sx={{ width: '100%', height: 'auto' }}
+              sx={{ width: '100%', height: '616px', objectFit: 'contain' }}
             />
           </Box>
         </Stack>

@@ -52,7 +52,8 @@ export function FollowUsSection({
           sx={{
             bgcolor: 'slate.850',
             borderRadius: 4,
-            p: { xs: 4, md: 6 },
+            p: { xs: 6, md: 12.5, xl: 10 },
+            px: { md: 10 },
             position: 'relative',
             overflow: 'hidden',
           }}
@@ -78,7 +79,12 @@ export function FollowUsSection({
               </Typography>
               <Typography
                 variant="body1"
-                sx={{ color: 'grey.400', maxWidth: 'sm' }}
+                sx={{
+                  color: '#ffffff',
+                  maxWidth: 'sm',
+                  fontSize: '18px',
+                  lineHeight: '32px',
+                }}
               >
                 {description}
               </Typography>
@@ -98,9 +104,16 @@ export function FollowUsSection({
                     size="small"
                     variant="outlined"
                     sx={{
-                      borderColor: 'grey.600',
-                      color: 'white',
-                      '&:hover': { bgcolor: 'grey.700' },
+                      borderRadius: '5px',
+                      border: 'none',
+                      bgcolor: '#ffffff',
+                      color: '#000000',
+                      fontSize: '16px',
+                      lineHeight: '24px',
+                      fontWeight: 400,
+                      height: '55px',
+                      minWidth: '127px',
+                      '&:hover': { bgcolor: '#f5f5f5' },
                     }}
                   >
                     {getIcon(button.label)} {button.label}

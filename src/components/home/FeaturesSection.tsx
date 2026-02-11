@@ -61,8 +61,12 @@ function FeatureRow({
         </Typography>
         <Typography
           variant="body1"
-          color="text.secondary"
-          sx={{ maxWidth: 'sm' }}
+          sx={{
+            maxWidth: 'sm',
+            fontSize: '18px',
+            lineHeight: '32px',
+            color: '#000000',
+          }}
         >
           {description}
         </Typography>

@@ -9,6 +9,7 @@ const withNextIntl = createNextIntlPlugin({
 });
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   serverExternalPackages: ['isolated-vm'],
 } satisfies NextConfig;
 

@@ -27,29 +27,32 @@ export const theme = createTheme({
         fontSize: '3.5rem', // 56px desktop
       },
     },
-    // Section titles - 24px on desktop
+    // Section titles - 38px on desktop
     h2: {
       fontSize: '1.25rem', // 20px mobile
       fontWeight: 600,
-      lineHeight: 1.3,
+      lineHeight: '64px',
+      color: '#333333',
       '@media (min-width:900px)': {
-        fontSize: '1.5rem', // 24px desktop
+        fontSize: '38px', // 38px desktop
       },
     },
-    // Feature titles - 20px on desktop
+    // Feature titles - 28px on desktop
     h3: {
       fontSize: '1.125rem', // 18px mobile
-      fontWeight: 700,
-      lineHeight: 1.4,
+      fontWeight: 600,
+      lineHeight: '42px',
+      color: '#000000',
       '@media (min-width:900px)': {
-        fontSize: '1.25rem', // 20px desktop
+        fontSize: '28px', // 28px desktop
       },
     },
-    // Block titles - 16px
+    // Block titles - 28px
     h4: {
-      fontSize: '1rem', // 16px
-      fontWeight: 700,
-      lineHeight: 1.4,
+      fontSize: '28px',
+      fontWeight: 600,
+      lineHeight: '42px',
+      color: '#000000',
     },
     // Subheadline - 18px on desktop
     subtitle1: {
@@ -88,19 +91,19 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      50: '#e8f7fc',
-      100: '#c5ebf7',
-      200: '#9edcf1',
-      300: '#77cdeb',
-      400: '#5fc3e7',
-      500: '#47b9e3',
-      600: '#3fa8cf',
-      700: '#3592b5',
-      800: '#2c7c9b',
-      900: '#1f5a70',
-      main: '#47b9e3',
-      light: '#5fc3e7',
-      dark: '#3592b5',
+      50: '#fce4f3',
+      100: '#f8bce0',
+      200: '#f38fcc',
+      300: '#ee62b8',
+      400: '#e940a8',
+      500: '#c91d8f',
+      600: '#a71677',
+      700: '#8a1262',
+      800: '#6e0e4e',
+      900: '#520a3a',
+      main: '#a71677',
+      light: '#c91d8f',
+      dark: '#8a1262',
       contrastText: '#fff',
     },
     slate: {

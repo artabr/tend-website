@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import NextImage from 'next/image';
 import Stack from '@mui/material/Stack';
 
 interface FooterProps {
@@ -24,15 +25,13 @@ export function Footer({ copyright, privacyPolicy }: FooterProps) {
           }}
         >
           <Stack direction="row" spacing={1} alignItems="center">
-            <Typography
-              sx={{
-                fontSize: '1.125rem',
-                fontWeight: 'bold',
-                color: 'primary.main',
-              }}
-            >
-              T
-            </Typography>
+            <NextImage
+              src="/logo.svg"
+              alt="Tend logo"
+              width={28}
+              height={28}
+              style={{ display: 'block' }}
+            />
             <Typography sx={{ fontSize: '1rem', fontWeight: 500 }}>
               Tend
             </Typography>

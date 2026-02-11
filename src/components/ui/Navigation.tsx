@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 import LocaleSwitcher from './LocaleSwitcher';
 import NavigationLink from './NavigationLink';
@@ -29,15 +30,13 @@ export default function Navigation() {
         >
           <Stack direction="row" spacing={3} alignItems="center">
             <Stack direction="row" spacing={0.5} alignItems="center">
-              <Typography
-                sx={{
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  color: 'primary.light',
-                }}
-              >
-                T
-              </Typography>
+              <NextImage
+                src="/logo.svg"
+                alt="Tend logo"
+                width={24}
+                height={24}
+                style={{ display: 'block' }}
+              />
               <Typography
                 sx={{ fontSize: '0.875rem', fontWeight: 500, color: 'white' }}
               >
