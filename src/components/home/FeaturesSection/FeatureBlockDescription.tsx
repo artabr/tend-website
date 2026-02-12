@@ -11,12 +11,7 @@ export function FeatureBlockDescription({
     <Typography
       className="FeatureBlockDescription-root"
       variant="body1"
-      sx={{
-        maxWidth: 'sm',
-        fontSize: '18px',
-        lineHeight: '32px',
-        color: '#000000',
-      }}
+      sx={{ maxWidth: 'sm' }}
     >
       {children}
     </Typography>

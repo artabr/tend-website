@@ -17,9 +17,7 @@ export function FooterBrand() {
         height={28}
         style={{ display: 'block' }}
       />
-      <Typography sx={{ fontSize: '1rem', fontWeight: 500 }}>
-        Tend
-      </Typography>
+      <Typography variant="body2">Tend</Typography>
     </Stack>
   );
 }

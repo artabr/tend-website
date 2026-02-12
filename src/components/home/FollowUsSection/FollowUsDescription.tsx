@@ -9,12 +9,7 @@ export function FollowUsDescription({ children }: FollowUsDescriptionProps) {
     <Typography
       className="FollowUsDescription-root"
       variant="body1"
-      sx={{
-        color: '#ffffff',
-        maxWidth: 'sm',
-        fontSize: '18px',
-        lineHeight: '32px',
-      }}
+      sx={{ color: '#ffffff', maxWidth: 'sm' }}
     >
       {children}
     </Typography>

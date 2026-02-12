@@ -13,21 +13,12 @@ export function HeroSubheadline({
   linkHref,
 }: HeroSubheadlineProps) {
   return (
-    <Typography
-      className="HeroSubheadline-root"
-      variant="subtitle1"
-      sx={{ color: '#333333', fontSize: '28px', lineHeight: '24px' }}
-    >
+    <Typography className="HeroSubheadline-root" variant="subtitle1">
       {text}{' '}
       <Link
         className="HeroSubheadline-link"
         href={linkHref}
-        sx={{
-          color: 'primary.main',
-          fontWeight: 500,
-          textDecoration: 'underline',
-          '&:hover': { color: 'primary.dark' },
-        }}
+        sx={{ color: 'primary.main' }}
       >
         {linkText}
       </Link>

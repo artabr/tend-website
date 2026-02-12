@@ -12,17 +12,7 @@ export function HeroCallToAction({ children, href }: HeroCallToActionProps) {
       href={href}
       variant="contained"
       size="large"
-      sx={{
-        bgcolor: '#a71677',
-        color: 'white',
-        px: 4,
-        borderRadius: '10px',
-        fontSize: '16px',
-        lineHeight: '24px',
-        fontWeight: 400,
-        height: '54px',
-        '&:hover': { bgcolor: '#8a1262' },
-      }}
+      color="primary"
     >
       {children}
     </Button>

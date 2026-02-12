@@ -54,39 +54,42 @@ export const theme = createTheme({
       lineHeight: '42px',
       color: '#000000',
     },
-    // Subheadline - 18px on desktop
+    // Hero subheadline - 28px on desktop
     subtitle1: {
-      fontSize: '1rem', // 16px mobile
+      fontSize: '1.25rem', // 20px mobile
       fontWeight: 400,
-      lineHeight: 1.55,
+      lineHeight: '24px',
+      color: '#333333',
       '@media (min-width:900px)': {
-        fontSize: '1.125rem', // 18px desktop
+        fontSize: '1.75rem', // 28px desktop
       },
     },
-    // Body text - 14px
+    // Body text - 18px (primary description text)
     body1: {
-      fontSize: '0.875rem', // 14px
+      fontSize: '1.125rem', // 18px
       fontWeight: 400,
-      lineHeight: 1.55,
+      lineHeight: '32px',
+      color: '#000000',
     },
-    // Small body text - 16px
+    // Secondary body text - 16px
     body2: {
       fontSize: '1rem', // 16px
-      fontWeight: 600,
+      fontWeight: 500,
       lineHeight: 1.55,
-      letterSpacing: '0.24px',
     },
-    // Caption/disclaimer - 12px
+    // Caption/disclaimer - 13px
     caption: {
-      fontSize: '0.75rem', // 12px
+      fontSize: '0.8125rem', // 13px
       fontWeight: 400,
       lineHeight: 1.5,
+      color: '#333333',
     },
     // Button text
     button: {
       fontSize: '1rem', // 16px
-      fontWeight: 600,
+      fontWeight: 400,
       textTransform: 'none',
+      lineHeight: '24px',
     },
   },
   palette: {
@@ -137,6 +140,37 @@ export const theme = createTheme({
         'html, body': {
           backgroundColor: '#ffffff',
           color: '#212121',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        containedPrimary: {
+          borderRadius: '10px',
+          height: '54px',
+          paddingLeft: 32,
+          paddingRight: 32,
+        },
+        outlined: {
+          borderRadius: '5px',
+          border: 'none',
+          backgroundColor: '#ffffff',
+          color: '#000000',
+          height: '55px',
+          minWidth: '127px',
+          '&:hover': {
+            backgroundColor: '#f5f5f5',
+            border: 'none',
+          },
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          textDecoration: 'underline',
+          '&:hover': { color: '#8a1262' },
         },
       },
     },

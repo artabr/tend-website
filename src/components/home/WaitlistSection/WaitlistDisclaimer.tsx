@@ -6,11 +6,7 @@ interface WaitlistDisclaimerProps {
 
 export function WaitlistDisclaimer({ children }: WaitlistDisclaimerProps) {
   return (
-    <Typography
-      className="WaitlistDisclaimer-root"
-      variant="caption"
-      sx={{ fontSize: '13px', color: '#333333' }}
-    >
+    <Typography className="WaitlistDisclaimer-root" variant="caption">
       {children}
     </Typography>
   );
