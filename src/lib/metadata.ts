@@ -53,6 +53,19 @@ export async function generatePageMetadata(
       locale: metadata.locale,
       type: 'website',
       url: pageUrl,
+      images: [
+        {
+          url: `${metadata.siteUrl}/logo-compact.svg`,
+          alt: metadata.siteName,
+        },
+      ],
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/logo-micro.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/logo-micro.svg',
     },
     alternates: {
       canonical: pageUrl,

@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import { FollowUsContent } from './FollowUsContent';
-import { FollowUsMedia } from './FollowUsMedia';
 
 interface ButtonItem {
   label: string;
@@ -44,7 +43,6 @@ export function FollowUsCard({
           description={description}
           buttons={buttons}
         />
-        <FollowUsMedia />
       </Box>
     </Box>
   );

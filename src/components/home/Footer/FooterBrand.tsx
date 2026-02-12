@@ -11,13 +11,15 @@ export function FooterBrand() {
       alignItems="center"
     >
       <NextImage
-        src="/logo.svg"
+        src="/logo-compact.svg"
         alt="Tend logo"
-        width={28}
-        height={28}
+        width={64}
+        height={64}
         style={{ display: 'block' }}
       />
-      <Typography variant="body2">Tend</Typography>
+      <Typography variant="body2" sx={{ mx: '20px' }}>
+        Tend
+      </Typography>
     </Stack>
   );
 }
