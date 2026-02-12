@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
-import { HeroSection } from './HeroSection';
-import { WaitlistSection } from './WaitlistSection';
-import { FeaturesSection } from './FeaturesSection';
-import { WhySection } from './WhySection';
-import { FollowUsSection } from './FollowUsSection';
-import { Footer } from './Footer';
+import { HeroSection } from './HeroSection/index';
+import { WaitlistSection } from './WaitlistSection/index';
+import { FeaturesSection } from './FeaturesSection/index';
+import { WhySection } from './WhySection/index';
+import { FollowUsSection } from './FollowUsSection/index';
+import { Footer } from './Footer/index';
 
 interface Button {
   label: string;
